@@ -1,5 +1,7 @@
 # Creando una Red Social
 
+Hemos elegido la temática alimentación
+
 ## Preámbulo
 
 Instagram, Snapchat, Twitter, Facebook, Twitch, Linkedin, etc. Las redes
