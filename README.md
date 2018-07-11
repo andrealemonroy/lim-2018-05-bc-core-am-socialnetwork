@@ -1,32 +1,43 @@
 # Creando una Red Social
 
-Hemos elegido la temática alimentación
 
-## Preámbulo
+## Presentación de Temática.
 
-Instagram, Snapchat, Twitter, Facebook, Twitch, Linkedin, etc. Las redes
-sociales han invadido nuestras vidas. Las amamos u odiamos, y muchxs no podemos
-vivir sin ellas.
+Está red social en proceso de ideación esta orientado a tema de Alimentación para Deportistas que buscan un estilo de vida saludable. 
 
-Hay redes sociales de todo tipo y para todo tipo de intereses. Por ejemplo,
-en una ronda de financiamiento con inversionistas, se presentó una red social
-para químicos en la que los usuarios podían publicar artículos sobre sus
-investigaciones, comentar en los artículos de sus colegas, y filtrar artículos
-de acuerdo a determinadas etiquetas o su popularidad, lo más reciente, o lo
-más comentado.
+Como objetivos principales consideramos:
+ 
+* Conocer como se comunican (que medios o redes sociales utilizan)
+* Conocer sus frustraciones, motivaciones e intereses.
 
-## Introducción
+Decidimos empezar a conocer el mercado digital con una lluvia de ideas  de lo que ibamos recopilando a nivel de investigación por internet con el fin de conocer a nuestros competidores; y elaborar un BenchMark potente que nos brinde recursos cuándo iniciemos la definición de propuesta de valor.
 
-Una emprendedora nos ha encargado crear una red social. No nos da mucho detalle
-sobre qué tipo de red social quiere, sólo nos dice que creemos la mejor que
-podamos, y que luego la convenzamos de lanzarla al mercado. Nos da ciertos temas
-en los que le gustaría invertir:
+![Login](http://subirimagen.me/uploads/20180711090526.57)
 
-* Alimentación
-* Feminismo
-* Educación
-* Salud
-* Energías Renovables
+
+
+#### Creación de cuenta de usuario e inicio de sesión
+
+* Login con Firebase:
+  - Solamente para el login es obligatorio usar [Firebase](https://firebase.google.com/), no para las
+    publicaciones en el muro ni las demás funcionalidades, para eso puedes
+    usar [`localStorage`](https://developer.mozilla.org/es/docs/Web/API/API_de_almacenamiento_web/Usando_la_API_de_almacenamiento_web).
+  - Autenticación con Facebook o Google.
+* Validaciones:
+  - No pueden haber usuarios repetidos.
+  - La cuenta de usuario debe ser un correo electrónico válido.
+  - Lo que se escriba en el campo (_input_) de contraseña debe ser secreto.
+* Comportamiento:
+  - Al enviarse un formulario de registro o inicio de sesión, debe validarse.
+  - En caso haya errores, el sistema debe mostrar mensajes de error para
+    ayudar al usuario a corregirlos.
+  - La aplicación solo permitirá el acceso a usuarios con cuentas válidas.
+  - Al recargar la aplicación, se debe verificar si el usuario está
+    logueado antes de mostrarle el contenido privado.
+* Perspectiva de interfaz:
+
+  ![Login](https://user-images.githubusercontent.com/9284690/40994765-c3cf9602-68c2-11e8-89ac-8254859b5ebb.png)
+
 
 ## Objetivos
 
