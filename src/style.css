@@ -1,3 +1,108 @@
+#publicar{
+  background-image: url(https://previews.123rf.com/images/coffeemate/coffeemate1301/coffeemate130100056/17438663-pencil-cartoon-a-children-s-sketch.jpg);
+    background-size: auto;
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+    left: 0;
+    position: absolute;
+    top: -1px;
+    vertical-align: middle;
+}
+textarea {
+  max-width: 100%;
+}
+
+#container-post{
+  padding-top: 50px;
+}
+
+#btn-post{
+  width: 100px;
+}
+.photo_user_name{
+  display: block;
+  
+}
+#photo{
+  border-radius: 50%;
+  /* overflow: hidden; */
+  bottom: 0;
+  left: 0;
+  /* margin: auto; */
+  max-height: 20px;
+  max-width: 20px;
+  /* position: absolute; */
+  right: 0;
+  top: 0;
+  padding-top: 20px;
+  margin: 0;
+}
+
+#user_name{
+    /* display: block; */
+    /* margin-left: 10px; */
+    max-width: 100px;
+    /* padding-left: 15px; */
+    /* padding-top: 40px; */
+    /* text-overflow: ellipsis; */
+    /* white-space: nowrap; */
+    /* overflow: hidden; */
+    position: relative;
+    bottom: 1;
+    right: 1;
+    display: block;
+    margin-left: 30px;
+    max-width: 126px;
+    overflow: hidden;
+    padding-left: 30px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#sign-off{
+  background-color: transparent;
+  color: inherit;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: bold;
+  height: 27px;
+  line-height: 28px;
+  padding: 0 10px 1px;
+  position: relative;
+  text-decoration: none;
+  vertical-align: top;
+  white-space: nowrap;
+  position: relative;
+  padding: 0 12px 1px;
+  color: #365899;
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: 2px;
+  box-sizing: border-box;
+  left: 200px;
+  position: absolute;
+  top: 3px;
+  width: 200px;
+}
+
+#post{
+  background-color: transparent;
+  /* border: 0; */
+  box-sizing: border-box;
+  display: block;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  height: 50px;
+  line-height: 18px;
+  min-height: 69px;
+  /* outline: 0; */
+  padding: 23px 12px 14px;
+  /* resize: none; */
+  /* width: 100%; */
+}
+
 #signIn {
   display: block;
 }
@@ -24,6 +129,7 @@ body {
   border-radius: 50%;
 }
 
+<<<<<<< HEAD
 .input-field input[type=date]:focus+label,
 .input-field input[type=text]:focus+label,
 .input-field input[type=email]:focus+label,
@@ -51,6 +157,8 @@ body {
   padding: 1% 5%;
 }
 
+=======
+>>>>>>> 89192fb51d4afa44066d815007790ed0858cc482
 /* #backgroundImage {
   position: fixed;
   top:0;
@@ -65,14 +173,25 @@ body {
   -o-filter: blur(3px);
   -ms-filter: blur(3px);
   filter: blur(3px);
+} */
+
+
+.input-field input[type=date]:focus+label,
+.input-field input[type=text]:focus+label,
+.input-field input[type=email]:focus+label,
+.input-field input[type=password]:focus+label {
+  color: #e91e63;
 }
 
-* {
-  box-sizing: border-box
+.input-field input[type=date]:focus,
+.input-field input[type=text]:focus,
+.input-field input[type=email]:focus,
+.input-field input[type=password]:focus {
+  border-bottom: 2px solid #e91e63;
+  box-shadow: none;
 }
-
 /* style the container */
-
+/* 
 .container {
   position: absolute;
   z-index: 999;
@@ -80,7 +199,7 @@ body {
   background-color: #73837d;
   margin: 3%;
   font-family: 'Montserrat';
-}
+} */
 
 #wall {
   z-index: 999;
