@@ -1,301 +1,236 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
-<meta charset="UTF-8">
-<title>Login</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css?family=Bitter|Open+Sans:400,800|Montserrat" rel="stylesheet">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="../icomoon/style.css">
+  <title>Hello, world!</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 </head>
 
 <body>
-  <!--<div id="backgroundImage"></div>-->
+  <nav class="navbar navbar-dark bg-primary">
+    <span class="navbar-brand mb-0 h1">Vitality</span>
+  </nav>
 
-  <head>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
-  </head>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-  <body>
-    <div id="signIn">
-      <div class="section"></div>
-      <main>
-        <center>
-          <img class="responsive-img" style="width: 250px;" id = "logo" src="logo.jpg" />
-          <div class="section"></div>
-          <h5 class="indigo-text">Ingresa</h5>
-          <div class="section"></div>
-          <div class="container">
-          <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
-
-            <form class="col s12" method="post">
-              <div class='row'>
-                <div class='col s12'>
-                </div>
-              </div>
-
-              <div class='row'>
-                <div class='input-field col s12'>
-                  <input class='validate' type='email' name='email' id='mail-access' />
-                  <label for='email'>Ingresa tu email</label>
-                </div>
-              </div>
-
-              <div class='row'>
-                <div class='input-field col s12'>
-                  <input class='validate' type='password' name='password' id='password-access' />
-                  <label for='password'>Ingresa tu contraseña</label>
-                </div>
-                </div>
-
-                <a href="#" class="fb" id="btn-login-facebook">
-                  <i class="fa fa-facebook fa-fw"></i> Facebook
-                </a>
-
-                <a href="#" class="google" id="btn-login-google">
-                  <i class="fa fa-google fa-fw"></i> Google+
-                </a>
-                <center>
-                    <div class='row'>
-                        <input type="button" id="btn-login" class=".btn" value="LOGIN">
-                      <!-- <button type='submit' name='btn-login' class='col s12 btn btn-large waves-effect indigo' id="btn-login">ingresar</button> -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <!--                 <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li> -->
+        <!--                 <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        Dropdown
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
                     </div>
-                  </center>
-              <div class="row">
-                  <div class="col">
-                    <a id="registerLink" href="#" class="btn">Crear cuenta</a>
-                    <a href="">¿Olvidaste tu cuenta?</a>
-                  </div>
-                </div> 
+                </li> -->
+        <!--                 <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Disabled</a>
+                </li> -->
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
 
 
-              <div id="container-text"></div>
-              <div id="status"></div>
-            </form>
-          </div>
-        </center>
-      </main>
-
-  </div>
-
-  <div id="signUp">
-
-    <div class="col">
-
-              <div class='row'>
-                <div class='input-field col s12'>
-                  <input class='validate' type='email' name='email' id='email' />
-                  <label for='email'>Ingresa tu email</label>
-                </div>
-              </div>
-
-      <input id="emailR" type="email" name="username" placeholder="email" required>
-      <input id="passwordR" type="password" name="password" placeholder="password" required>
-
-
-
-      <div class="bottom-container">
-        <input type="button" id="btn-signup" class=".btn" value="Regístrate">
-      </div>
-
-      <input type="button" id="return" value="volver al login">
-      <div id="container-sigup"></div>
+      <a class="btn btn-outline-primary" href="#" data-toggle="modal" data-target="#modalLogin">Ingresar</a>
+      <a class="btn btn-outline-secondary" href="#" data-toggle="modal" data-target="#modalLogin ">Registrar</a>
 
     </div>
-    <div id="wall" class="wrapper">
-      <div id="logout">
-
-  </div>
-
-  </div>
-
-
-        <input type="button" id="sign-off" value="Cerrar sesión">
-
-    <div id="logout">
-
-      <!--<p id="user_name"></p>-->
-
-      <div class="maincontent">
-
-        <div class="logo">
-          <!--<img src="logo.jpg" alt="logo">-->
+  </nav>
+  <div class="modal" tabindex="-1" role="dialog" id="modalLogin">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Vita Life</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
+        <div class="modal-body">
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Ingresar</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Registrar</a>
+            </li>
 
-        <div class="row">
-          <div class="tab_container">
-            <div id="tab1" class="tab_content">
-              <div class="col">
+          </ul>
+          <div class="tab-content" id="myTabContent">
 
-                <div class="post">
-                  <h3>Post</h3>
-                  <div id="container-post" class="hiden">
-                    <textarea name="Publicacòn" id="post" cols="30" rows="10"></textarea>
-                    <input type="button" value="Publicar" id="btn-post">
-                  </div>
-                  <div id="posts" class="hiden">
-                  </div>
-                  <!--<h3>
-                    <a href="#">La importancia de los carbohidratos</a>
-                  </h3>
-                  <span class="postInfo">por
-                    <a href="#">Andrea Monroy</a> Julio 2018</span>
-                  <p></p>
-                  <a class="more" href="#">Ver más</a>
-                  <span class="line"></span>
-                  <a href="#">12 Likes</a>
-                  <a href="#"> Compartir</a>
-                  <span class="line"></span>
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+              <form id="form-login">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Email</label>
+                  <input class='validate form-control' type='email' name='email' id='mail-access' />
                 </div>
-                End Blog Post-->
 
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Password</label>
+                  <input class='validate form-control' type='password' name='password' id='password-access' />
                 </div>
-                <!--End Tab 1-->
-              </div>
+
+                <div class="form-group">
+                  <a href="#" class="fb" id="btn-login-facebook">
+                    <i class="fa fa-facebook fa-fw"></i> Facebook
+                  </a>
+                </div>
+                <div class="form-group">
+                  <a href="#" class="google" id="btn-login-google">
+                    <i class="fa fa-google fa-fw"></i> Google+
+                  </a>
+                </div>
+                <input type="submit" id="btn-login" class="btn" value="LOGIN">
+
+
+                <div id="container-text"></div>
+              </form>
             </div>
 
-            <div id="tab2" class="tab_content">
 
-              <!--<h3>Acerca de</h3>
-            <p>
-              <strong>App creada en Laboratoria :)</strong>
-            </p>-->
-            </div>
-            <!--End Tab 2 -->
 
-            <div id="tab3" class="tab_content">
+            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+              <form id="form-signup">
+                <div class="form-group">
+                  <input id="emailR" class='form-control' type="email" name="username" placeholder="email" required>
+                </div>
+                <div class="form-group">
+                  <input id="passwordR" class='form-control' type="password" name="password" placeholder="password" required pattern=".{8,}">
+                </div>
+                <div class="form-group">
+                  <input id="confirm-password" class='form-control' type="password" name="confirm-password" placeholder="confirm password" required />
+                </div>
+                <p id="password-requirements">Requisitos mínimos de Contraseña:</p>
+                <ul>
+                  <li id="mayus">Mínimo 1 mayúscula</li>
+                  <li id="special">Mínimo 1 caracter especial</li>
+                  <li id="number">Mínimo 1 número</li>
+                  <li id="lower">Mínimo 1 minúscula</li>
+                  <li id="len">Mínimo 8 caracteres</li>
+                </ul>
+                <input type="submit" id="btn-signup" class="btn" value="Regístrate">
+              </form>
             </div>
-            <!--End Tab 3 -->
 
-            <div id="tab4" class="tab_content">
-            </div>
-            <!--End Tab 4 -->
 
           </div>
-          <!--End Tab Container -->
-
         </div>
-        <!--End Main Content-->
 
-        <div class="sidebar">
-        </div>
-        <!--End Sidebar-->
+        <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div> -->
+
       </div>
-      <!--End Wrapper -->
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
-  </body>
+    </div>
+  </div>
 
-  </html>
-
+  <div id="wall" class="wrapper">
+    <div id="logout">
+      <p id="user_name"></p>
+      <input type="button" id="sign-off" value="Cerrar sesión">
+    </div>
+    <div class="maincontent">
       <div class="logo">
-        <!--<img src="logo.jpg" alt="logo">-->
+        <!-- <img src="logo.jpg" alt="logo"> -->
       </div>
-
       <div class="row">
         <div class="tab_container">
           <div id="tab1" class="tab_content">
             <div class="col">
-              <div class="photo_user_name">
-                <div id="photo"></div>
-                <div id="user_name"></div>
-              </div>
+              <div id="photo"></div>
               <div class="post">
                 <!--<h3>Post</h3>-->
-                <div id="container-post" class="hiden">
+                <form id="form-post">
+                  <div id="container-post" class="hiden">
                     <span class="uiIconText _5qtp">
                       <i class="publicar"></i>Publicación</span>
-                  <textarea placeholder="¿Qué deseas publicar?" name="Publicacòn" id="post" cols="30" rows="10"></textarea>
-                  <input type="button" value="Publicar" id="btn-post">
-                </div>
+                    <textarea name="Publicación" id="post" cols="30" rows="10" placeholder="¿Qué deseas publicar?"></textarea>
+                    <input type="submit" value="Publicar" id="btn-post">
+                  </div>
+                </form>
                 <div id="posts" class="hiden">
                 </div>
-                <!--<h3>
-                  <a href="#">La importancia de los carbohidratos</a>
-                </h3>
-                <span class="postInfo">por
-                  <a href="#">Andrea Monroy</a> Julio 2018</span>
-                <p></p>
-                <a class="more" href="#">Ver más</a>
-                <span class="line"></span>
-                <a href="#">12 Likes</a>
-                <a href="#"> Compartir</a>
-                <span class="line"></span>
-              </div>
-              End Blog Post-->
-
-              </div>
-              <!--End Tab 1-->
-            </div>
+                <h3>
+                  <!--<a href="#">La importancia de los carbohidratos</a>
+</h3>
+<span class="postInfo">por
+<a href="#">Andrea Monroy</a> Julio 2018</span>
+<p></p>
+<a class="more" href="#">Ver más</a>
+<span class="line"></span>
+<a href="#">12 Likes</a>
+<a href="#"> Compartir</a>
+<span class="line"></span>
+</div>
+End Blog Post
+                          </div>
+                          End Tab 1-->
+                  <!--</div>
+                  </div>
+                  <div id="tab2" class="tab_content">
+                      <h3>Acerca de</h3>
+<p>
+<strong>App creada en Laboratoria :)</strong>
+</p>
+                  </div>-->
+                  <!--End Tab 2-->
+                  <!--<div id="tab3" class="tab_content">
+                  </div>
+                  <End Tab 3 
+                  <div id="tab4" class="tab_content">
+                  </div>
+                  <!--End Tab 4-->
+                  <!--</div>
+              End Tab Container 
           </div>
-
-          <div id="tab2" class="tab_content">
-
-            <!--<h3>Acerca de</h3>
-          <p>
-            <strong>App creada en Laboratoria :)</strong>
-          </p>-->
+          <!--End Main Content-->
+                  <!--<div class="sidebar">
           </div>
-          <!--End Tab 2 -->
-
-          <div id="tab3" class="tab_content">
-          </div>
-          <!--End Tab 3 -->
-
-          <div id="tab4" class="tab_content">
-          </div>
-          <!--End Tab 4 -->
-
-        </div>
-        <!--End Tab Container -->
-
-      </div>
-      <!--End Main Content-->
-      <div class="sidebar">
+          End Sidebar
       </div>
       <!--End Sidebar-->
-    </div>
+              </div>
+              <!--End Wrapper -->
 
-    <!--End Wrapper -->
-    <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
-    <script>
-      // Initialize Firebase
-      const config = {
-        apiKey: "AIzaSyAB7icNPz-tO88wVkgcCeNmlz9H1xd8OTU",
-        authDomain: "login-e3b98.firebaseapp.com",
-        databaseURL: "https://login-e3b98.firebaseio.com",
-        projectId: "login-e3b98",
-        storageBucket: "login-e3b98.appspot.com",
-        messagingSenderId: "857338189328"
-      };
-      firebase.initializeApp(config);
 
-    </script>
-    <script src="login.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
->>>>>>> 89192fb51d4afa44066d815007790ed0858cc482
-</body>
-
-</html>
-<script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
-<script>
-  // Initialize Firebase
-  const config = {
-    apiKey: "AIzaSyAB7icNPz-tO88wVkgcCeNmlz9H1xd8OTU",
-    authDomain: "login-e3b98.firebaseapp.com",
-    databaseURL: "https://login-e3b98.firebaseio.com",
-    projectId: "login-e3b98",
-    storageBucket: "login-e3b98.appspot.com",
-    messagingSenderId: "857338189328"
-  };
-  firebase.initializeApp(config);
-</script>
-<script src="login.js"></script>
+              <!-- Optional JavaScript -->
+              <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+              <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+                crossorigin="anonymous"></script>
+              <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+                crossorigin="anonymous"></script>
+              <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
+                crossorigin="anonymous"></script>
+              <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+              <script src="all.js"></script>
 </body>
 
 </html>

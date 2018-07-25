@@ -1,3 +1,6 @@
+.check{
+  background-color: green;
+}
 #publicar{
   background-image: url(https://previews.123rf.com/images/coffeemate/coffeemate1301/coffeemate130100056/17438663-pencil-cartoon-a-children-s-sketch.jpg);
     background-size: auto;
@@ -61,31 +64,7 @@ textarea {
     white-space: nowrap;
 }
 
-#sign-off{
-  background-color: transparent;
-  color: inherit;
-  display: inline-block;
-  font-size: 12px;
-  font-weight: bold;
-  height: 27px;
-  line-height: 28px;
-  padding: 0 10px 1px;
-  position: relative;
-  text-decoration: none;
-  vertical-align: top;
-  white-space: nowrap;
-  position: relative;
-  padding: 0 12px 1px;
-  color: #365899;
-  cursor: pointer;
-  text-decoration: none;
-  border-radius: 2px;
-  box-sizing: border-box;
-  left: 200px;
-  position: absolute;
-  top: 3px;
-  width: 200px;
-}
+
 
 #post{
   background-color: transparent;
@@ -103,30 +82,9 @@ textarea {
   /* width: 100%; */
 }
 
-#signIn {
-  display: block;
-}
-
-#signUp {
-  display: none;
-}
-
-
-body {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-}
-
-main {
-  flex: 1 0 auto;
-}
-
-body {
-  background: #fff;
-}
-#logo{
-  border-radius: 50%;
+ul{
+  list-style: none;
+  padding: 0%;
 }
 
 /* #backgroundImage {
@@ -143,35 +101,42 @@ body {
   -o-filter: blur(3px);
   -ms-filter: blur(3px);
   filter: blur(3px);
+} 
+*/
+
+
+.fb {
+  background-color: #3B5998;
+  color: white;
+  padding: 1% 5%;
+}
+
+.google {
+  background-color: #dd4b39;
+  color: white;
+  padding: 1% 5%;
+}
+
+
+/* html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: "PT Sans", sans-serif;
+  color: #505260;
+  background-color: white;
+}
+
+a {
+  color: #2f889a;
+  text-decoration: none;
+}
+
+
+
+input, textarea {
+  font-family: "PT Sans", sans-serif;
+  font-size: 1.6rem;
 } */
-
-
-.input-field input[type=date]:focus+label,
-.input-field input[type=text]:focus+label,
-.input-field input[type=email]:focus+label,
-.input-field input[type=password]:focus+label {
-  color: #e91e63;
-}
-
-.input-field input[type=date]:focus,
-.input-field input[type=text]:focus,
-.input-field input[type=email]:focus,
-.input-field input[type=password]:focus {
-  border-bottom: 2px solid #e91e63;
-  box-shadow: none;
-}
-/* style the container */
-/* 
-.container {
-  position: absolute;
-  z-index: 999;
-  border-radius: 3px;
-  background-color: #73837d;
-  margin: 3%;
-  font-family: 'Montserrat';
-} */
-
-#wall {
-  z-index: 999;
-  position: absolute;
-}
