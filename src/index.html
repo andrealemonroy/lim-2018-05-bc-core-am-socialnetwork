@@ -2,23 +2,23 @@
 <html lang="en">
 
 <head>
-  <!-- Required meta tags -->
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+  <title>Vitality</title>
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
     crossorigin="anonymous">
+     <!-- íconos -->
   <link rel="stylesheet" href="../icomoon/style.css">
-  <title>Hello, world!</title>
   <link rel="stylesheet" type="text/css" href="style.css">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 </head>
 
 <body>
+  
   <nav class="navbar navbar-dark bg-primary">
-    <span class="navbar-brand mb-0 h1">Vitality</span>
+    <span class="navbar-brand mb-0 h1"><img src="Vitality.png"></span>
   </nav>
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -34,24 +34,6 @@
             <span class="sr-only">(current)</span>
           </a>
         </li>
-        <!--                 <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li> -->
-        <!--                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
-                        Dropdown
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </li> -->
-        <!--                 <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Disabled</a>
-                </li> -->
       </ul>
       <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -86,14 +68,12 @@
           <div class="tab-content" id="myTabContent">
 
             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-              <form id="form-login">
+              <form id="form-signin">
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Email</label>
+                  <label for="mail-access">Correo</label>
                   <input class='validate form-control' type='email' name='email' id='mail-access' />
-                </div>
 
-                <div class="form-group">
-                  <label for="exampleInputPassword1">Password</label>
+                  <label for="password-access">Contraseña</label>
                   <input class='validate form-control' type='password' name='password' id='password-access' />
                 </div>
 
@@ -125,7 +105,8 @@
                   <input id="passwordR" class='form-control' type="password" name="password" placeholder="password" required pattern=".{8,}">
                 </div>
                 <div class="form-group">
-                  <input id="confirm-password" class='form-control' type="password" name="confirm-password" placeholder="confirm password" required />
+                  <input id="confirm-password" class='form-control' type="password" name="confirm-password" placeholder="confirm password"
+                    required />
                 </div>
                 <p id="password-requirements">Requisitos mínimos de Contraseña:</p>
                 <ul>
@@ -157,80 +138,63 @@
       <p id="user_name"></p>
       <input type="button" id="sign-off" value="Cerrar sesión">
     </div>
-    <div class="maincontent">
-      <div class="logo">
-        <!-- <img src="logo.jpg" alt="logo"> -->
-      </div>
-      <div class="row">
-        <div class="tab_container">
-          <div id="tab1" class="tab_content">
-            <div class="col">
-              <div id="photo"></div>
-              <div class="post">
-                <!--<h3>Post</h3>-->
-                <form id="form-post">
-                  <div id="container-post" class="hiden">
-                    <span class="uiIconText _5qtp">
-                      <i class="publicar"></i>Publicación</span>
-                    <textarea name="Publicación" id="post" cols="30" rows="10" placeholder="¿Qué deseas publicar?"></textarea>
-                    <input type="submit" value="Publicar" id="btn-post">
-                  </div>
-                </form>
-                <div id="posts" class="hiden">
-                </div>
-                <h3>
-                  <!--<a href="#">La importancia de los carbohidratos</a>
-</h3>
-<span class="postInfo">por
-<a href="#">Andrea Monroy</a> Julio 2018</span>
-<p></p>
-<a class="more" href="#">Ver más</a>
-<span class="line"></span>
-<a href="#">12 Likes</a>
-<a href="#"> Compartir</a>
-<span class="line"></span>
-</div>
-End Blog Post
-                          </div>
-                          End Tab 1-->
-                  <!--</div>
-                  </div>
-                  <div id="tab2" class="tab_content">
-                      <h3>Acerca de</h3>
-<p>
-<strong>App creada en Laboratoria :)</strong>
-</p>
-                  </div>-->
-                  <!--End Tab 2-->
-                  <!--<div id="tab3" class="tab_content">
-                  </div>
-                  <End Tab 3 
-                  <div id="tab4" class="tab_content">
-                  </div>
-                  <!--End Tab 4-->
-                  <!--</div>
-              End Tab Container 
-          </div>
-          <!--End Main Content-->
-                  <!--<div class="sidebar">
-          </div>
-          End Sidebar
-      </div>
-      <!--End Sidebar-->
-              </div>
-              <!--End Wrapper -->
 
 
-              <!-- Optional JavaScript -->
-              <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-              <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-                crossorigin="anonymous"></script>
-              <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-                crossorigin="anonymous"></script>
-              <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
-                crossorigin="anonymous"></script>
-              <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
-              <script src="all.js"></script>
+    <div class="card w-50" id="form-post">
+      <div id="photo"></div>
+      <div id="container-post" class="hiden card-body">
+
+        <div class="form-group ">
+          <label for="post">Publicación</label>
+          <div class="input-group ">
+            <textarea class="form-control " name="Publicación" id="post" rows="5" placeholder="¿Qué deseas publicar?"></textarea>
+            <input type="submit" value="Publicar" class="btn btn-primary" id="btn-post">
+          </div>
+          <div class="btn-group">
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              •
+            </button>
+            <div class="dropdown-menu dropdown-menu-right">
+              <button class="dropdown-item" type="button">Editar</button>
+              <button class="dropdown-item" type="button">Eliminar</button>
+            </div>
+          </div>
+          <a href="#" class="btn btn-info btn-lg">
+            <span class="glyphicon glyphicon-thumbs-up"></span> Like
+          </a>
+
+
+        </div>
+      </div>
+    </div>
+
+
+
+        <div class="card w-50">
+          <form>
+            <div>
+
+            </div>
+          </form>
+          <div id="posts" class="hiden">
+          </div>
+        </div>
+
+
+
+ 
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
+      crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+    <script src="all.js"></script>
 </body>
 
 </html>

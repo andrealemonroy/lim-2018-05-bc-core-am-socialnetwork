@@ -67,10 +67,10 @@ $("#passwordR").on('keyup', () => {
   for (let i = 0; i < 5; i++) {
     if (regExp[i].test(registrationPassword)) {
 
-elements[i].attr("class","icon-checkmark");
+      elements[i].attr("class", "icon-checkmark");
 
     } else {
-      elements[i].attr("class","icon-cross");
+      elements[i].attr("class", "icon-cross");
     }
   }
 
@@ -86,14 +86,13 @@ const validateSignUp = () => {
   console.log(registrationPassword);
   console.log(confirmPassword);
   if (!expresion.test(registrationMail)) {
-    //$('#error-email-signup').css('background', 'url(https://scontent.flim17-1.fna.fbcdn.net/v/t1.15752-9/37638965_1870900236323040_1375884492576653312_n.png?_nc_cat=0&oh=95d07850998541818679f363b50f5319&oe=5BDCC2B7)')
     alert('El formato de correo es invalido');
     return false;
   } else if (registrationMail === '' || registrationPassword === '') {
     alert('Todos los campos deben llenarse')
     return false;
   } else if (registrationPassword != confirmPassword) {
-    //$('#error-email-signup').css('background', 'url(https://scontent.flim17-1.fna.fbcdn.net/v/t1.15752-9/37638965_1870900236323040_1375884492576653312_n.png?_nc_cat=0&oh=95d07850998541818679f363b50f5319&oe=5BDCC2B7)')
+
     alert('Las contraseñas no coinciden');
     return false;
   }
@@ -102,13 +101,8 @@ const validateSignUp = () => {
 
 const showResult = (user) => {
   if (user.emailVerified) {
-    /*         `getID('wall').style.display="block"`
-            getID('wall').style.display = 'block';
-            sign.style.display = 'none'; */
-    clearElement(getID('container-text'));
-    getID('container-text').innerHTML = `
- <p>Se validó que su correo si existe, Bienvenid@, usuario se encuentra activo</p>
- `
+    alert("Se validó que su correo si existe, Bienvenid@, usuario se encuentra activo")
+
   } else {
     console.log('No logearse');
   }
@@ -121,10 +115,8 @@ window.onload = () => {
     if (user) {
       showResult(user);
     } else {
-      clearElement(getID('container-text'));
+
       console.log(user);
-      //containerText.innerHTML = '';
-      getID('container-text').innerHTML = `<p>Valide su cuenta  para logearse`;
     }
   });
 }
@@ -133,40 +125,41 @@ window.onload = () => {
 //Enviar un mensaje de verificación al usuario
 const checkEmail = () => {
   const user = firebase.auth().currentUser;
-  user.sendEmailVerification().then(() => {
-    document.getElementById('container-sigup').innerHTML = '';
-    document.getElementById('container-sigup').innerHTML = `<p>Se ha enviado un correo de validación</p>`;
-    console.log(user);
-    // Email sent.
-  }).catch((error) => {
-    clearContent(getID('container-sigup'));
-    getID('container-sigup').innerHTML = `<p>Ha ocurrido un error</p>`;
+  user.sendEmailVerification()
+    .then(() => {
 
-  });
+      alert("Se ha enviado un correo de validación")
+
+
+    }).catch((error) => {
+
+      alert("Ha ocurrido un error")
+
+    });
 }
-
-
-//Registrar nuevo usuario con correo y contraseña
-/* $('#registerLink').click(() => {
-    getID('signIn').style.display = 'none';
-    getID('signUp').style.display = 'block';
-}); */
 
 $('#form-signup').submit(registrar = (e) => {
   e.preventDefault();
   //Obtener email y pass
   let registrationMail = getID('emailR').value;
   let registrationPassword = getID('passwordR').value;
-  //let resuldo = validateSignUp();
+
   if (validateSignUp()) {
     firebase.auth().createUserWithEmailAndPassword(registrationMail, registrationPassword)
       .then(() => {
-        checkEmail();
+        const user = firebase.auth().currentUser;
+        user.sendEmailVerification()
+          .then(() => {
+
+            alert("Se ha enviado un correo de validación")
+
+            // Email sent.
+          }).catch((error) => {
+
+            alert("Ha ocurrido un error")
+
+          });
       })
-      .catch((error) => {
-        // Handle Errors here.
-        getID('container-sigup').innerHTML = `<p>${error.code}:${error.message} </p>`
-      });
   } else {
     alert('error');
   }
@@ -183,15 +176,12 @@ $('#form-login').submit(login = (e) => {
     console.log('hola');
     firebase.auth().signInWithEmailAndPassword(accessMail, accessPassword)
       .then(() => {
-        wall.style.display = 'block';
-        sign.style.display = 'none';
-        var user = firebase.auth.currentUser;
-        getID('user_name').innerHTML = user.email;
+        checkEmail();
+
 
       })
       .catch(function (error) {
         // Handle Errors here.
-        // ...
         getID('container-text').innerHTML = `<p>No se encuentra registrado ${error.code}:${error.message}</p>`
       });
   } else {
@@ -206,20 +196,17 @@ $('#form-login').submit(login = (e) => {
 
 //Cerrar sesión
 $('#sign-off').click(() => {
-  const user = firebase.auth().currentUser;
-  console.log(user);
+
   firebase.auth().signOut()
     .then(() => {
-      getID('wall').style.display = 'none';
-      sign.style.display = 'block';
+      console.log("sesión cerrada");
+      getID('user_name').innerHTML = '';
+      getID('photo').innerHTML = '';
+
     })
     .catch((error) => {})
 });
 
-$('#return').click(() => {
-  getID('signIn').style.display = 'block';
-  getID('signUp').style.display = 'none';
-});
 
 //Escribir en la base de datos
 const writeUserData = (userId, name, email, imageUrl) => {
@@ -243,9 +230,6 @@ const inicializar = () => {
 }
 //}
 
-const getFirebase = () => {
-  alert('pruebaaaa');
-}
 
 
 const writeNewPost = (uid, message) => {
@@ -264,15 +248,40 @@ const writeNewPost = (uid, message) => {
   return newPostKey;
 }
 
+/* function toggleStar(postRef, uid) {
+  postRef.transaction(function(post) {
+    if (post) {
+      if (post.stars && post.stars[uid]) {
+        post.starCount--;
+        post.stars[uid] = null;
+      } else {
+        post.starCount++;
+        if (!post.stars) {
+          post.stars = {};
+        }
+        post.stars[uid] = true;
+      }
+    }
+    console.log(post);
+    return post;
+  });
+} */
+
 $('#btn-post').click(() => {
   var userId = firebase.auth().currentUser.uid;
   const newPost = writeNewPost(userId, post.value);
   posts.innerHTML += `
  <div>
  <textarea id="${newPost}">${post.value}</textarea>
- <button id ="update" type="button">Update</button>
- <button id="delete" type="button">Delete</button>
+ <div id="${posts}"><button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+ •
+</button>            <div class="dropdown-menu dropdown-menu-right">
+<button class="dropdown-item" type="button">Editar</button>
+<button class="dropdown-item" type="button">Eliminar</button>
+</div>
+</div>
  </div>`
+
   const btnUpdate = document.getElementById('update');
   const btnDelete = document.getElementById('delete');
   btnDelete.addEventListener('click', (e) => {
@@ -310,8 +319,8 @@ $('#btn-login-google').click(() => {
       getID('user_name').innerHTML = `${result.user.displayName}`;
       $('#photo').text('');
       $('#photo').append("<img src='" + result.user.photoURL + "' />");
-      getID('wall').style.display = 'block';
-      sign.style.display = 'none';
+      /*       getID('wall').style.display = 'block';
+            sign.style.display = 'none'; */
     })
     .catch((error) => {
       console.log('yyyyyyyyyyyyyyy');

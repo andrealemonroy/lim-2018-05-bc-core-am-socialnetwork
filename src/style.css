@@ -81,7 +81,7 @@ textarea {
   /* resize: none; */
   /* width: 100%; */
 }
-
+#sign
 ul{
   list-style: none;
   padding: 0%;
@@ -116,27 +116,3 @@ ul{
   color: white;
   padding: 1% 5%;
 }
-
-
-/* html {
-  font-size: 62.5%;
-}
-
-body {
-  font-size: 1.6rem;
-  font-family: "PT Sans", sans-serif;
-  color: #505260;
-  background-color: white;
-}
-
-a {
-  color: #2f889a;
-  text-decoration: none;
-}
-
-
-
-input, textarea {
-  font-family: "PT Sans", sans-serif;
-  font-size: 1.6rem;
-} */
