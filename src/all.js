@@ -1,4 +1,4 @@
-//Declración de Variables:
+//Declaración de Variables:
 const status = document.getElementById('status');
 
 // Initialize Firebase
@@ -237,6 +237,7 @@ const writeNewPost = (uid, message) => {
   let postData = {
     uid: uid,
     message: message
+
   };
   // Get a key for a new Post.
   let newPostKey = firebase.database().ref().child('posts').push().key;
