@@ -81,7 +81,9 @@ textarea {
   /* resize: none; */
   /* width: 100%; */
 }
-#sign
+#sign-off{
+  display:none;
+}
 ul{
   list-style: none;
   padding: 0%;

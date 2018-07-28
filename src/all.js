@@ -1,3 +1,4 @@
+
 //Declración de Variables:
 const status = document.getElementById('status');
 
@@ -12,8 +13,6 @@ const config = {
 };
 firebase.initializeApp(config);
 
-// Get a reference to the database service
-const database = firebase.database();
 
 const clearContent = (elements) => {
   elements.forEach(element => {
@@ -31,6 +30,294 @@ const clearElement = (element) => {
 const getID = (id) => {
   return document.getElementById(id);
 }
+
+// Session storage almacena información en el navegador para poder trabajar con ella las veces que necesitemos
+const putOnSession = (key, item) => {
+  sessionStorage.setItem(key, item);
+}
+
+const getFromSession = (key) => {
+  return sessionStorage.getItem(key);
+}
+
+const getLoggedUser = () => {
+  return firebase.auth().currentUser;
+}
+
+
+//Logout
+const logout = (redirect = true) => {
+  firebase.auth().signOut()
+      .then(() => {
+
+
+      })
+      .catch((error) => {
+      })
+}
+
+
+//post.js
+$(document).ready(function () {
+  firebase.auth().onAuthStateChanged((user) => {
+      listPosts();
+  });
+});
+
+const getDataBase = () => {
+  return firebase.database();
+}
+
+//esta función determina si el post debe ser mostrado o no
+const shouldDisplayPost = (currentUser, post) => {
+  // si es un post propio mostrar siempre
+  if (currentUser.uid === post.userId) {
+      return true;
+  } else {
+      return !post.private;
+  }
+}
+
+
+//esta función muestra el post en pantalla, lo agrega a la lista de posts
+const showPost = (post) => {
+  let currentUser = getLoggedUser();
+  if (shouldDisplayPost(currentUser, post)) {
+      let postWrapper = `<li data-id="${post.idPost}">`
+          + `<div class="post">`
+          + `<span>${post.content}</span><br/>`;
+      //si son mis propios posts, se agrega las opciones de edición y eliminar
+      if (post.userId === currentUser.uid) {
+          postWrapper = postWrapper + `<span><a href="#" class="edit-post" onClick="editPost('${post.idPost}')" data-post="${post.idPost}">Editar</a>`
+              + `<br/>`
+              + `<a href="#" class="delete-post" onClick="removePost('${post.idPost}')" data-post="${post.idPost}">Eliminar</a></span>`
+      }
+      //sin son posts de otras personas 
+      else {
+          postWrapper = postWrapper + `<span>autor:${post.author}</span>`
+      }
+
+      postWrapper = postWrapper + `</div></li>`;
+      //agregar post a la lista
+      $('#user-posts-lst').append(postWrapper);
+  }
+}
+
+const getAllPosts = (callback) => {
+  getDataBase().ref('/posts/').once('value', callback);
+}
+
+const getPostByUserAndId = (userId, postId, callback) => {
+  console.log(userId, postId);
+  getDataBase().ref('/user-posts/' + userId + '/' + postId).once('value', callback);
+}
+
+const addNewPost = (post) => {
+  let uid = post.userId;
+  // Get a key for a new Post.
+  var postKey = getDataBase().ref().child('posts').push().key;
+  // Write the new post's data simultaneously in the posts list and the user's post list.
+  var updates = {};
+  updates['/posts/' + postKey] = post;
+  updates['/user-posts/' + uid + '/' + postKey] = post;
+
+  post.idPost = postKey;
+  getDataBase().ref().update(updates);
+
+  return post;
+}
+
+const updatePost = (post) => {
+  console.log(post);
+  var updates = {};
+  updates['/posts/' + post.idPost] = post;
+  updates['/user-posts/' + post.userId + '/' + post.idPost] = post;
+  getDataBase().ref().update(updates).then(() => {
+      //
+      alertify.success('Se ha actualizado el post');
+      //load posts again
+      listPosts(post.userId);
+  });
+
+}
+
+const deletePost = (userId, idPost) => {
+  getDataBase().ref().child('posts/' + idPost).remove();
+  getDataBase().ref().child('/user-posts/' + userId + '/' + idPost).remove().then(() => {
+      //
+      alertify.success('Se ha elminado el post');
+      //load posts again
+      listPosts(userId);
+  });
+}
+
+
+const editPost = (idPost) => {
+  let currentUser = getLoggedUser();
+
+  alertify.genericDialog || alertify.dialog('genericDialog', function () {
+      return {
+          main: function (content) {
+              this.setContent(content);
+          },
+          setup: function () {
+              return {
+                  focus: {
+                      element: function () {
+                          return this.elements.body.querySelector(this.get('selector'));
+                      },
+                      select: true
+                  },
+                  options: {
+                      basic: true,
+                      maximizable: false,
+                      resizable: false,
+                      padding: false
+                  }
+              };
+          },
+          settings: {
+              selector: undefined
+          }
+      };
+  });
+
+  let callbackEdit = (snapshot) => {
+      let post = snapshot.val();
+      let $editForm = $('#form-edit-post');
+      $editForm.find('textarea[name="postContent"]').val(post.content);
+      $editForm.find('input[name="idPost"]').val(post.idPost);
+      $editForm.find('input[name="privatePost"]').prop('checked', post.private)
+      alertify.genericDialog($editForm[0]).set('selector', 'textarea[name="postContent"]');
+  }
+
+  getPostByUserAndId(currentUser.uid, idPost, callbackEdit);
+}
+
+const removePost = (idPost) => {
+
+  let question = document.createElement('span');
+  question.innerHTML = '¿Seguro que desea eliminar el Post?';
+
+  //show confirm diaglo
+  alertify.confirm(question,
+      //if YES
+      () => {
+          let currentUser = getLoggedUser();
+          let userId = currentUser.uid;
+          deletePost(userId, idPost);
+      },
+      //if NO
+      () => {
+          //Do nothing
+      }
+  )
+      .set(
+          { labels: { ok: 'Sí', cancel: 'No' }, padding: true, title: 'Red Social - Vitality' }
+      );
+}
+
+const getPostToEdit = () => {
+  let $form = $('#form-edit-post');
+  let content = $form.find('textarea[name="postContent"]').val();
+  let idPost = $form.find('input[name="idPost"]').val();
+
+  if (content.trim().length == 0) {
+      throw new Error("El post debe tener contenido");
+  }
+
+  let isPrivate = $form.find('input[name="privatePost"]').prop('checked');
+  let currentUser = getLoggedUser();
+
+  let post = {};
+  post.idPost = idPost;
+  post.author = currentUser.email;
+  post.userId = currentUser.uid;
+  post.content = content;
+  post.private = isPrivate;
+  post.edited = true;
+
+  return post;
+}
+
+const getPost = () => {
+  let $form = $('#add-form-post');
+  let content = $form.find('textarea[name="postContent"]').val();
+
+  if (content.trim().length == 0) {
+      throw new Error("El post debe tener contenido");
+  }
+
+  let isPrivate = $form.find('input[name="privatePost"]').prop('checked');
+  let currentUser = getLoggedUser();
+
+  let post = {};
+  post.author = currentUser.email;
+  post.userId = currentUser.uid;
+  post.content = content;
+  post.private = isPrivate;
+  post.edited = false;
+
+  return post;
+}
+
+const listPosts = () => {
+  $('#user-posts-lst').html('<p>Cargando posts...</p>');
+  let callback = (snapshot) => {
+      $('#user-posts-lst').html('');
+      snapshot.forEach(function (child) {
+          showPost(child.val());
+      })
+  };
+  getAllPosts(callback);
+}
+
+$('#add-form-post').submit((e) => {
+  e.preventDefault();
+  try {
+      let post = getPost();
+      post = addNewPost(post);
+      showPost(post);
+  } catch (error) {
+      alert(error.message);
+  }
+
+});
+
+$('#form-edit-post').submit((e) => {
+  e.preventDefault();
+  try {
+      let post = getPostToEdit();
+      updatePost(post);
+      alertify.closeAll();
+  } catch (error) {
+      alert(error.message);
+  }
+});
+
+$('#logout-lnk').click((e) => {
+  logout();
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //Validar formulario de login
@@ -50,6 +337,103 @@ const validateLogin = () => {
   }
   return true;
 }
+
+
+const processAuthResult = (authResult, needsEmailVerified = false) => {
+  if (needsEmailVerified && !authResult.user.emailVerified) {
+      logout(false);
+      alert('Aún no ha activado su cuenta. Por favor ingrese a su correo para verificarla');
+  } else {
+      //redirect to home
+      window.location = '/';
+  }
+}
+
+const authWithEmailAndPassword = (email, password) => {
+  firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+      .then(function () {
+          return firebase.auth().signInWithEmailAndPassword(email, password);
+      })
+      .then(function (response) {
+          processAuthResult(response, true);
+      })
+      .catch(function (error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          $('#container-text').html('error message: ' + errorMessage);
+      });
+}
+
+const getAuthProvider = (socialNetwork) => {
+  switch (socialNetwork) {
+      case 'google':
+          return new firebase.auth.GoogleAuthProvider();
+      case 'facebook':
+          return new firebase.auth.FacebookAuthProvider();
+      default:
+          throw new Error("No valid auth provider");
+  }
+}
+
+//login with google
+const authWithOAuth = (socialNetwork) => {
+  let authProvider = getAuthProvider(socialNetwork);
+  authProvider.setCustomParameters({
+      'display': 'popup'
+  });
+  firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+      .then( () => {
+          return firebase.auth().signInWithPopup(authProvider);
+      })
+      .then((response) => {
+          processAuthResult(response);
+      })
+      .catch(function (error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          $('#container-text').html('error message: ' + errorMessage);
+      });
+}
+
+//Autentificación con Google
+$('#btn-login-google').click(() => {
+  authWithOAuth('google');
+});
+
+//Autentificación con Facebook
+$('#btn-login-facebook').click(() => {
+  authWithOAuth('facebook');
+});
+
+$('#form-login').submit(login = (e) => {
+  e.preventDefault();
+  //Obtener email y pass registrados
+  let accessMail = getID('mail-access').value;
+  let accessPassword = getID('password-access').value;
+  if (validateLogin()) {
+    console.log('hola');
+    firebase.auth().signInWithEmailAndPassword(accessMail, accessPassword)
+      .then(() => {
+        checkEmail();
+
+
+      })
+      .catch(function (error) {
+        // Handle Errors here.
+        getID('container-text').innerHTML = `<p>No se encuentra registrado ${error.code}:${error.message}</p>`
+      });
+  } else {
+    alert('error')
+
+  }
+  clearContent([getID('mail-access'), getID('password-access')]);
+
+
+});
+
+
 
 
 //Evento para seguridad de contraseña de registro
@@ -99,29 +483,6 @@ const validateSignUp = () => {
   return true;
 };
 
-const showResult = (user) => {
-  if (user.emailVerified) {
-    alert("Se validó que su correo si existe, Bienvenid@, usuario se encuentra activo")
-
-  } else {
-    console.log('No logearse');
-  }
-}
-
-//Validar estado de usuario - Observador
-window.onload = () => {
-
-  firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      showResult(user);
-    } else {
-
-      console.log(user);
-    }
-  });
-}
-
-
 //Enviar un mensaje de verificación al usuario
 const checkEmail = () => {
   const user = firebase.auth().currentUser;
@@ -167,192 +528,9 @@ $('#form-signup').submit(registrar = (e) => {
   clearContent([getID('emailR'), getID('passwordR'), getID('confirm-password')]);
 });
 
-$('#form-login').submit(login = (e) => {
-  e.preventDefault();
-  //Obtener email y pass registrados
-  let accessMail = getID('mail-access').value;
-  let accessPassword = getID('password-access').value;
-  if (validateLogin()) {
-    console.log('hola');
-    firebase.auth().signInWithEmailAndPassword(accessMail, accessPassword)
-      .then(() => {
-        checkEmail();
-
-
-      })
-      .catch(function (error) {
-        // Handle Errors here.
-        getID('container-text').innerHTML = `<p>No se encuentra registrado ${error.code}:${error.message}</p>`
-      });
-  } else {
-    alert('error')
-
-  }
-  clearContent([getID('mail-access'), getID('password-access')]);
-
-
-});
-
-
-//Cerrar sesión
-$('#sign-off').click(() => {
-
-  firebase.auth().signOut()
-    .then(() => {
-      console.log("sesión cerrada");
-      getID('user_name').innerHTML = '';
-      getID('photo').innerHTML = '';
-
-    })
-    .catch((error) => {})
-});
-
-
-//Escribir en la base de datos
-const writeUserData = (userId, name, email, imageUrl) => {
-  firebase.database().ref('users/' + userId)
-    .set({
-      username: name,
-      email: email,
-      profile_picture: imageUrl
-    });
-}
-
-const formPost = getID('form-post');
-
-//window.onload = () => {
-const inicializar = () => {
-  $('#form-post').submit(getFirebase = (e) => {
-    e.preventDefault();
-    //$('#form-post').submit(getFirebase, false);
-    //firebase.database().ref();
-  });
-}
-//}
 
 
 
-const writeNewPost = (uid, message) => {
-  // A post entry.
-  let postData = {
-    uid: uid,
-    message: message
-  };
-  // Get a key for a new Post.
-  let newPostKey = firebase.database().ref().child('posts').push().key;
-  // Write the new post's data simultaneously in the posts list and the user's post list.
-  let updates = {};
-  updates['/posts/' + newPostKey] = postData;
-  updates['/user-posts/' + uid + '/' + newPostKey] = postData;
-  firebase.database().ref().update(updates);
-  return newPostKey;
-}
-
-/* function toggleStar(postRef, uid) {
-  postRef.transaction(function(post) {
-    if (post) {
-      if (post.stars && post.stars[uid]) {
-        post.starCount--;
-        post.stars[uid] = null;
-      } else {
-        post.starCount++;
-        if (!post.stars) {
-          post.stars = {};
-        }
-        post.stars[uid] = true;
-      }
-    }
-    console.log(post);
-    return post;
-  });
-} */
-
-$('#btn-post').click(() => {
-  var userId = firebase.auth().currentUser.uid;
-  const newPost = writeNewPost(userId, post.value);
-  posts.innerHTML += `
- <div>
- <textarea id="${newPost}">${post.value}</textarea>
- <div id="${posts}"><button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
- •
-</button>            <div class="dropdown-menu dropdown-menu-right">
-<button class="dropdown-item" type="button">Editar</button>
-<button class="dropdown-item" type="button">Eliminar</button>
-</div>
-</div>
- </div>`
-
-  const btnUpdate = document.getElementById('update');
-  const btnDelete = document.getElementById('delete');
-  btnDelete.addEventListener('click', (e) => {
-    e.preventDefault();
-    firebase.database().ref().child('/user-posts/' + userId + '/' + newPost).remove();
-    firebase.database().ref().child('posts/' + newPost).remove();
-    while (posts.firstChild) posts.removeChild(posts.firstChild);
-    // reload_page();
-  });
-
-  btnUpdate.addEventListener('click', () => {
-    const newUpdate = document.getElementById(newPost);
-    const nuevoPost = {
-      message: newUpdate.value,
-    };
-    var updatesUser = {};
-    var updatesPost = {};
-    updatesUser['/user-posts/' + userId + '/' + newPost] = nuevoPost;
-    updatesPost['/posts/' + newPost] = nuevoPost;
-    firebase.database().ref().update(updatesUser);
-    firebase.database().ref().update(updatesPost);
-  });
-});
 
 
-//Autentificación con Google
-$('#btn-login-google').click(() => {
-  let provider = new firebase.auth.GoogleAuthProvider();
-  provider.setCustomParameters({
-    'display': 'popup'
-  });
-  firebase.auth().signInWithPopup(provider)
-    .then((result) => {
-      console.log(result);
-      getID('user_name').innerHTML = `${result.user.displayName}`;
-      $('#photo').text('');
-      $('#photo').append("<img src='" + result.user.photoURL + "' />");
-      /*       getID('wall').style.display = 'block';
-            sign.style.display = 'none'; */
-    })
-    .catch((error) => {
-      console.log('yyyyyyyyyyyyyyy');
-      // Handle Errors here.
-      /* const errorCode = error.code;
-       const errorMessage = error.message; */
-      // The email of the user's account used.
-      // const email = error.email;
-      // The firebase.auth.AuthCredential type that was used.
-      const credential = error.credential;
-    });
-});
 
-//Autentificación con Facebook
-$('#btn-login-facebook').click(() => {
-  const provider = new firebase.auth.FacebookAuthProvider();
-  provider.setCustomParameters({
-    'display': 'popup'
-  });
-  firebase.auth().signInWithPopup(provider)
-    .then((result) => {
-      console.log(result);
-      getID('user_name').innerHTML = `${result.user.displayName}`;
-      $('#photo').text('');
-      $('#photo').append("<img src='" + result.user.photoURL + "' />");
-      // getID('wall').style.display = 'block';
-      $('#modalLogin').modal('hide')
-
-    })
-    .catch((error) => {
-      console.log('yyyyyyyyyyyyyyy');
-      //console.log(error.code + error.message)
-    });
-
-})
