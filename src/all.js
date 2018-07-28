@@ -83,21 +83,29 @@ const shouldDisplayPost = (currentUser, post) => {
 const showPost = (post) => {
   let currentUser = getLoggedUser();
   if (shouldDisplayPost(currentUser, post)) {
-      let postWrapper = `<li data-id="${post.idPost}">`
-          + `<div class="post">`
+      let postWrapper = `<div data-id="${post.idPost}">`
+          + `<div id="container-post" class="card-body">`
           + `<span>${post.content}</span><br/>`;
       //si son mis propios posts, se agrega las opciones de edición y eliminar
       if (post.userId === currentUser.uid) {
-          postWrapper = postWrapper + `<span><a href="#" class="edit-post" onClick="editPost('${post.idPost}')" data-post="${post.idPost}">Editar</a>`
-              + `<br/>`
+          postWrapper = postWrapper + 
+          
+          <div class="btn-group">
+          <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            •
+          </button>
+        </div>
+          
+          `<span><a href="#" class="edit-post" onClick="editPost('${post.idPost}')" data-post="${post.idPost}">Editar</a>`
+
               + `<a href="#" class="delete-post" onClick="removePost('${post.idPost}')" data-post="${post.idPost}">Eliminar</a></span>`
       }
       //sin son posts de otras personas 
       else {
-          postWrapper = postWrapper + `<span>autor:${post.author}</span>`
+          postWrapper =   ` <div class="card w-75">`+`<span>Por ${post.author}</span>`+ postWrapper 
       }
 
-      postWrapper = postWrapper + `</div></li>`;
+      postWrapper =            `<div class="input-group"> ` + postWrapper +  ` </div>`+`</div>`;
       //agregar post a la lista
       $('#user-posts-lst').append(postWrapper);
   }

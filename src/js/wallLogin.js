@@ -1,6 +1,6 @@
 document.getElementById("wallHome").addEventListener('click', () => {
     var userId = firebase.auth().currentUser.uid;
-    const newPost = writeNewPost(userId, post.value);
+    let newPost = writeNewPost(userId, post.value);
     
      wall.innerHTML = `<div id="wall" class="wrapper">
      <div id="logout">
