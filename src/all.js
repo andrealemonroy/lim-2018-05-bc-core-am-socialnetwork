@@ -213,7 +213,7 @@ const removePost = (idPost) => {
       }
   )
       .set(
-          { labels: { ok: 'Sí', cancel: 'No' }, padding: true, title: 'Red Social - Vitality' }
+          { labels: { ok: 'Sí', cancel: 'No' }, padding: true, title: 'Red Social - Dorelly' }
       );
 }
 
@@ -527,6 +527,10 @@ $('#form-signup').submit(registrar = (e) => {
 
   clearContent([getID('emailR'), getID('passwordR'), getID('confirm-password')]);
 });
+
+
+
+
 
 
 
