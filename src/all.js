@@ -84,7 +84,7 @@ const showPost = (post) => {
   if (shouldDisplayPost(currentUser, post)) {
     let postWrapper = `<div data-id="${post.idPost} class="card text-white bg-success mb-3">` +
       `<div id="container-post" class="card-body w-75">` +
-      `<span>${post.content}</span><br/>`;
+      `<span>${post.content}</span>`;
     //si son mis propios posts, se agrega las opciones de edición y eliminar
     if (post.userId === currentUser.uid) {
       postWrapper = postWrapper +
@@ -100,7 +100,7 @@ const showPost = (post) => {
     }
     //sin son posts de otras personas 
     else {
-      postWrapper = ` <div class="card-header w-75"><span>Por ${post.author}</span></div>` + postWrapper + `<br>`
+      postWrapper = ` <div class="card-header w-75">`+`<span>Por ${post.author}</span></div>` + postWrapper
     }
 
     postWrapper =  postWrapper + `</div>`;
