@@ -1,42 +1,27 @@
-g# Creando una Red Social
+# Creando una Red Social: Vitality Health Life
 
 
-## Presentación de Temática.
+## Introducción.
 
-Está red social en proceso de ideación esta orientado a tema de Alimentación para Deportistas que buscan un estilo de vida saludable. 
+Una emprendedora nos ha encargado crear una red social. No nos da mucho detalle sobre qué tipo de red social quiere, sólo nos dice que creemos la mejor que podamos, y que luego la convenzamos de lanzarla al mercado. Luego de señalarnos algunos temas de interes; como grupo decidimos enofcarnos en: **Alimentación y Salud**; ya que son tópicos cruciales en la vida diaria de las personas que desean mejorar o sostener un estilo de vida saludable.
 
-Como objetivos principales consideramos:
- 
-* Conocer como se comunican (que medios o redes sociales utilizan)
-* Conocer sus frustraciones, motivaciones e intereses.
+## Proceso de Planeamiento.
 
-Decidimos empezar a conocer el mercado digital con una lluvia de ideas  de lo que ibamos recopilando a nivel de investigación por internet con el fin de conocer a nuestros competidores; y elaborar un BenchMark potente que nos brinde recursos cuándo iniciemos la definición de propuesta de valor.
+La planificación del proyecto se respaldó en un **Product Backlog** de Scrum escritos como **Historias de Usuarios** para enlistar los requerimientos, necesidades y prioridades del cliente del nuevo producto en creación. 
 
-![Login](http://subirimagen.me/uploads/20180711090526.57)
+![Product Backlog](http://subirimagen.me/uploads/20180729132557.jpg)
 
 
+## UX Designer.
 
-#### Creación de cuenta de usuario e inicio de sesión
+Para diseñar nuestro nuevo producto nos respaldamos en las metodologías que ofrece la **Experiencia de Usuario (UX)**. Esto implica tomar en cuenta muchos aspectos antes de comenzar a diseñar un producto digital. Que revisaremos a continuación:
 
-* Login con Firebase:
-  - Solamente para el login es obligatorio usar [Firebase](https://firebase.google.com/), no para las
-    publicaciones en el muro ni las demás funcionalidades, para eso puedes
-    usar [`localStorage`](https://developer.mozilla.org/es/docs/Web/API/API_de_almacenamiento_web/Usando_la_API_de_almacenamiento_web).
-  - Autenticación con Facebook o Google.
-* Validaciones:
-  - No pueden haber usuarios repetidos.
-  - La cuenta de usuario debe ser un correo electrónico válido.
-  - Lo que se escriba en el campo (_input_) de contraseña debe ser secreto.
-* Comportamiento:
-  - Al enviarse un formulario de registro o inicio de sesión, debe validarse.
-  - En caso haya errores, el sistema debe mostrar mensajes de error para
-    ayudar al usuario a corregirlos.
-  - La aplicación solo permitirá el acceso a usuarios con cuentas válidas.
-  - Al recargar la aplicación, se debe verificar si el usuario está
-    logueado antes de mostrarle el contenido privado.
-* Perspectiva de interfaz:
+* Herramientas que utilizamos para conocer el mercado de las redes sociales: 
 
-  ![Login](https://user-images.githubusercontent.com/9284690/40994765-c3cf9602-68c2-11e8-89ac-8254859b5ebb.png)
+  - Iniciamos con una lluvia de ideas  de lo que ibamos recopilando a nivel de investigación por internet; con el fin de conocer a nuestros competidores; y elaborar un **Benchmark** potente que nos brinde recursos cuándo iniciemos la definición de propuesta de valor para clientes.
+
+  ![Lluvia de Ideas](http://subirimagen.me/uploads/20180711090526.57)
+
 
 
 ## Objetivos
