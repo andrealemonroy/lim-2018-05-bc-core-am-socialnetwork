@@ -30,13 +30,10 @@ textarea {
 }
 #photo{
   border-radius: 50%;
-  /* overflow: hidden; */
   bottom: 0;
   left: 0;
-  /* margin: auto; */
   max-height: 20px;
   max-width: 20px;
-  /* position: absolute; */
   right: 0;
   top: 0;
   padding-top: 20px;
@@ -44,14 +41,7 @@ textarea {
 }
 
 #user_name{
-    /* display: block; */
-    /* margin-left: 10px; */
     max-width: 100px;
-    /* padding-left: 15px; */
-    /* padding-top: 40px; */
-    /* text-overflow: ellipsis; */
-    /* white-space: nowrap; */
-    /* overflow: hidden; */
     position: relative;
     bottom: 1;
     right: 1;
@@ -64,48 +54,25 @@ textarea {
     white-space: nowrap;
 }
 
-
-
 #post{
   background-color: transparent;
-  /* border: 0; */
   box-sizing: border-box;
   display: block;
   font-family: Helvetica, Arial, sans-serif;
   font-size: 14px;
   height: 50px;
   line-height: 18px;
-  min-height: 69px;
-  /* outline: 0; */
   padding: 23px 12px 14px;
-  /* resize: none; */
-  /* width: 100%; */
 }
+
 #sign-off{
   display:none;
 }
+
 ul{
   list-style: none;
   padding: 0%;
 }
-
-/* #backgroundImage {
-  position: fixed;
-  top:0;
-  left:0;
-  z-index: 1;
-  display: block;
-  background-image: url('uno.jpg');
-  width: 100%;
-  height: 100%;
-  -webkit-filter: blur(3px);
-  -moz-filter: blur(3px);
-  -o-filter: blur(3px);
-  -ms-filter: blur(3px);
-  filter: blur(3px);
-} 
-*/
-
 
 .fb {
   background-color: #3B5998;
@@ -117,4 +84,8 @@ ul{
   background-color: #dd4b39;
   color: white;
   padding: 1% 5%;
+}
+.card-body{
+  margin-bottom: 5%;
+  background-color: #cfeff7;
 }
