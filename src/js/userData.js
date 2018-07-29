@@ -42,9 +42,8 @@ document.getElementById("userProfile").addEventListener('click', () => {
 </div>`
  
 })
-   </div>
 
- `;
+
  posts.innerHTML += `
    <div>
    <textarea id="${newPost}">${post.value}</textarea>
@@ -56,8 +55,9 @@ document.getElementById("userProfile").addEventListener('click', () => {
   </div>
   </div>
    </div>`
- 
-})
+
+
+
 
 
 
