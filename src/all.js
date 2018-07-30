@@ -1,7 +1,14 @@
+
 //Declración de Variables:
 const status = document.getElementById('status');
 
+const IS_LOGGED_USER_KEY = '_isLoggedUser';
 $('#logout-lnk').hide();
+// Verifica si el cliente se ha logueado
+const isLogged = () => {
+  return (getFromSession(IS_LOGGED_USER_KEY) == 'true');
+}
+
 // Initialize Firebase
 const config = {
   apiKey: "AIzaSyAB7icNPz-tO88wVkgcCeNmlz9H1xd8OTU",
@@ -41,9 +48,7 @@ const getFromSession = (key) => {
 }
 
 const getLoggedUser = () => {
-
   return firebase.auth().currentUser;
-
 }
 
 
@@ -57,17 +62,12 @@ const logout = (redirect = true) => {
     .catch((error) => {})
 }
 
-
-//post.js
+// first
 $(document).ready(function () {
   firebase.auth().onAuthStateChanged((user) => {
-    listPosts();
-
-
-
+      listPosts();
   });
 });
-
 
 const getDataBase = () => {
   return firebase.database();
@@ -77,44 +77,82 @@ const getDataBase = () => {
 const shouldDisplayPost = (currentUser, post) => {
   // si es un post propio mostrar siempre
   if (currentUser.uid === post.userId) {
-    return true;
+      return true;
   } else {
-    return !post.private;
+      return !post.private;
   }
 }
 
-
-//esta función muestra el post en pantalla, lo agrega a la lista de posts
-const showPost = (post) => {
-  let currentUser = getLoggedUser();
-  if (shouldDisplayPost(currentUser, post)) {
-
-    $(".navbar .btn").hide();
-    $("#logout-lnk").show();
-    let postWrapper = `<div data-id="${post.idPost}" class="card w-100">` +
-      `<div id="container-post" class="card-body w-100">${post.content}`+ `</div>`;
-    //si son mis propios posts, se agrega las opciones de edición y eliminar
-    if (post.userId === currentUser.uid) {
-      postWrapper = postWrapper +
-
-        `<div class="btn-group">
+const getOptionsForPosts = (currentUser, post) => {
+  let options = ``;
+  //si son mis propios posts, se agrega las opciones de edición y eliminar
+  if (post.userId === currentUser.uid) {
+      options = options
+          +         `<div class="btn-group">
           <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">
             •
           </button>` +
-        `<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#"  onClick="editPost('${post.idPost}')">Editar</a>
-          <a class="dropdown-item" href="#" onClick="removePost('${post.idPost}')">Eliminar</a>
-        </div>`
-    }
-    //sin son posts de otras personas 
-    else {
-      postWrapper = ` <h5 class="card-title"> Por ${post.author}</h5>` + postWrapper
-    }
-
-    postWrapper = postWrapper  + `</div>`;
-    //agregar post a la lista
-    $('#user-posts-lst').append(postWrapper);
+          `<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+           <a href="#" class="dropdown-item" onClick="editPost('${post.idPost}')" data-post="${post.idPost}">Editar</a>
+          <a href="#" class="dropdown-item" onClick="removePost('${post.idPost}')" data-post="${post.idPost}">Eliminar</a></div>`;
   }
+  return options;
+}
+
+//esta función consulta si el usuario ya le ha dado like al post, para decidir qué opción mostrar
+const getLikeOptionsAndThenShow = (currentUser, post, postWrapper) => {
+  getDataBase().ref('/postLikes/' + post.idPost + '/' + currentUser.uid).once('value', (snapshot) => {
+      //Cuando el usuario aún no le ha dado 'Me gusta', se muestra la opción
+      if (snapshot.val() == null) {
+          postWrapper = postWrapper
+              + `<br/>`
+              + `<span class="likeCounterWrapper" data-post="${post.idPost}">${post.likesCount}</span>`
+              + `<span><a href="#" onClick="addLikeToPost('${post.idPost}')">Me gusta</a></span>`
+              + `</div></li>`;
+      }
+      //Cuando el usuario ya le dio Like al post, entonces se muestra la opción 'Ya no me gusta' 
+      else {
+          postWrapper = postWrapper
+              + `<br/>`
+              + `<span class="likeCounterWrapper" data-post="${post.idPost}">${post.likesCount}</span>`
+              + `<span><a href="#" onClick="removeLikeFromPost('${post.idPost}')">Ya no me gusta</a></span>`
+              + `</div></li>`;
+      }
+      //agregar post a la lista
+      $('#user-posts-lst').prepend(postWrapper);
+  });
+}
+
+const updatePostOnList = (idPost) => {
+  let callback = (snapshot) => {
+      let post = snapshot.val();
+      //primero lo quitamos de la lista
+      removePostFromList(idPost);
+      //lo volvemos a mostrar
+      showPostOnList(post);
+  };
+  getPostByIdPost(idPost, callback);
+}
+
+const removePostFromList = (idPost) => {
+  $('#' + idPost).remove();
+}
+
+//esta función muestra el post en pantalla, lo agrega a la lista de posts
+const showPostOnList = (post) => {
+  $(".navbar .btn").hide();
+  $("#logout-lnk").show();
+  let currentUser = getLoggedUser();
+  if (shouldDisplayPost(currentUser, post)) {
+      let postWrapper = ` <h5 class="card-title"> Por User</h5>` +`<div data-id="${post.idPost}" class="card w-100">`
+          +  `<div id="container-post" class="card-body w-100">${post.content}`+ `</div>`;
+      postWrapper = postWrapper + getOptionsForPosts(currentUser, post);
+      getLikeOptionsAndThenShow(currentUser, post, postWrapper);
+  }
+}
+
+const getPostByIdPost = (postId, callback) => {
+  getDataBase().ref('/posts/' + postId).once('value', callback);
 }
 
 const getAllPosts = (callback) => {
@@ -122,8 +160,53 @@ const getAllPosts = (callback) => {
 }
 
 const getPostByUserAndId = (userId, postId, callback) => {
-  console.log(userId, postId);
   getDataBase().ref('/user-posts/' + userId + '/' + postId).once('value', callback);
+}
+
+const removeLikeFromPost = (idPost) => {
+  let currentUser = getLoggedUser();
+  getDataBase().ref('/posts/' + idPost + '/likesCount').once('value', (snapshot) => {
+      let currentLikes = snapshot.val();
+      if (currentLikes == null) {
+          currentLikes = 0;
+      } else {
+          currentLikes--;
+      }
+      removeLike(idPost, currentUser, currentLikes);
+  });
+}
+
+const removeLike = (idPost, currentUser, currentLikes) => {
+  var updates = {};
+  updates['/posts/' + idPost + '/likesCount'] = currentLikes;
+  getDataBase().ref().update(updates);
+  getDataBase().ref().child('/postLikes/' + idPost + '/' + currentUser.uid).remove().then(() => {
+      updatePostOnList(idPost);
+  });
+}
+
+const addLikeToPost = (idPost) => {
+  let currentUser = getLoggedUser();
+  getDataBase().ref('/posts/' + idPost + '/likesCount').once('value', (snapshot) => {
+      let currentLikes = snapshot.val();
+      if (currentLikes == null) {
+          currentLikes = 0;
+      }
+      currentLikes++;
+      addLike(idPost, currentUser, currentLikes);
+  });
+}
+
+const addLike = (idPost, currentUser, currentLikes) => {
+  var updates = {};
+  var like = {};
+  like.datetime = new Date().toLocaleString();
+  like.author = currentUser.uid;
+  updates['/postLikes/' + idPost + '/' + currentUser.uid] = like;
+  updates['/posts/' + idPost + '/likesCount'] = currentLikes;
+  getDataBase().ref().update(updates).then(() => {
+      updatePostOnList(idPost);
+  });
 }
 
 const addNewPost = (post) => {
@@ -136,21 +219,32 @@ const addNewPost = (post) => {
   updates['/user-posts/' + uid + '/' + postKey] = post;
 
   post.idPost = postKey;
-  getDataBase().ref().update(updates);
+  getDataBase().ref().update(updates).then(() => {
+      showPostOnList(post);
+  });
 
   return post;
 }
 
 const updatePost = (post) => {
-  console.log(post);
   var updates = {};
-  updates['/posts/' + post.idPost] = post;
-  updates['/user-posts/' + post.userId + '/' + post.idPost] = post;
+  let updateDatetime = new Date().toLocaleString();
+
+  updates['/posts/' + post.idPost + '/content'] = post.content;
+  updates['/posts/' + post.idPost + '/private'] = post.private;
+  updates['/posts/' + post.idPost + '/edited'] = true;
+  updates['/posts/' + post.idPost + '/editedOn'] = updateDatetime;
+
+  updates['/user-posts/' + post.userId + '/' + post.idPost + '/content'] = post.content;
+  updates['/user-posts/' + post.userId + '/' + post.idPost + '/private'] = post.private;
+  updates['/user-posts/' + post.userId + '/' + post.idPost + '/edited'] = true;
+  updates['/user-posts/' + post.userId + '/' + post.idPost + '/editedOn'] = updateDatetime;
+
   getDataBase().ref().update(updates).then(() => {
-    //
-    alertify.success('Se ha actualizado el post');
-    //load posts again
-    listPosts(post.userId);
+      //
+      alertify.success('Se ha actualizado el post');
+      //show post again
+      updatePostOnList(post.idPost);
   });
 
 }
@@ -158,10 +252,10 @@ const updatePost = (post) => {
 const deletePost = (userId, idPost) => {
   getDataBase().ref().child('posts/' + idPost).remove();
   getDataBase().ref().child('/user-posts/' + userId + '/' + idPost).remove().then(() => {
-    //
-    alertify.success('Se ha elminado el post');
-    //load posts again
-    listPosts(userId);
+      //
+      alertify.success('Se ha elminado el post');
+      //remove from list
+      removePostFromList(idPost);
   });
 }
 
@@ -170,39 +264,39 @@ const editPost = (idPost) => {
   let currentUser = getLoggedUser();
 
   alertify.genericDialog || alertify.dialog('genericDialog', function () {
-    return {
-      main: function (content) {
-        this.setContent(content);
-      },
-      setup: function () {
-        return {
-          focus: {
-            element: function () {
-              return this.elements.body.querySelector(this.get('selector'));
-            },
-            select: true
+      return {
+          main: function (content) {
+              this.setContent(content);
           },
-          options: {
-            basic: true,
-            maximizable: false,
-            resizable: false,
-            padding: false
+          setup: function () {
+              return {
+                  focus: {
+                      element: function () {
+                          return this.elements.body.querySelector(this.get('selector'));
+                      },
+                      select: true
+                  },
+                  options: {
+                      basic: true,
+                      maximizable: false,
+                      resizable: false,
+                      padding: false
+                  }
+              };
+          },
+          settings: {
+              selector: undefined
           }
-        };
-      },
-      settings: {
-        selector: undefined
-      }
-    };
+      };
   });
 
   let callbackEdit = (snapshot) => {
-    let post = snapshot.val();
-    let $editForm = $('#form-edit-post');
-    $editForm.find('textarea[name="postContent"]').val(post.content);
-    $editForm.find('input[name="idPost"]').val(post.idPost);
-    $editForm.find('input[name="privatePost"]').prop('checked', post.private)
-    alertify.genericDialog($editForm[0]).set('selector', 'textarea[name="postContent"]');
+      let post = snapshot.val();
+      let $editForm = $('#form-edit-post');
+      $editForm.find('textarea[name="postContent"]').val(post.content);
+      $editForm.find('input[name="idPost"]').val(post.idPost);
+      $editForm.find('input[name="privatePost"]').prop('checked', post.private)
+      alertify.genericDialog($editForm[0]).set('selector', 'textarea[name="postContent"]');
   }
 
   getPostByUserAndId(currentUser.uid, idPost, callbackEdit);
@@ -217,45 +311,36 @@ const removePost = (idPost) => {
   alertify.confirm(question,
       //if YES
       () => {
-        let currentUser = getLoggedUser();
-        let userId = currentUser.uid;
-        deletePost(userId, idPost);
+          let currentUser = getLoggedUser();
+          let userId = currentUser.uid;
+          deletePost(userId, idPost);
       },
       //if NO
       () => {
-        //Do nothing
+          //Do nothing
       }
-    )
-    .set({
-      labels: {
-        ok: 'Sí',
-        cancel: 'No'
-      },
-      padding: true,
-      title: 'Red Social - Dorelly'
-    });
+  )
+      .set(
+          { labels: { ok: 'Sí', cancel: 'No' }, padding: true, title: 'Red Social - vitality' }
+      );
 }
 
 const getPostToEdit = () => {
+  let currentUser = getLoggedUser();
   let $form = $('#form-edit-post');
   let content = $form.find('textarea[name="postContent"]').val();
   let idPost = $form.find('input[name="idPost"]').val();
 
   if (content.trim().length == 0) {
-    throw new Error("El post debe tener contenido");
+      throw new Error("El post debe tener contenido");
   }
 
   let isPrivate = $form.find('input[name="privatePost"]').prop('checked');
-  let currentUser = getLoggedUser();
-
   let post = {};
-  post.idPost = idPost;
-  post.author = currentUser.email;
   post.userId = currentUser.uid;
+  post.idPost = idPost;
   post.content = content;
   post.private = isPrivate;
-  post.edited = true;
-
   return post;
 }
 
@@ -264,7 +349,7 @@ const getPost = () => {
   let content = $form.find('textarea[name="postContent"]').val();
 
   if (content.trim().length == 0) {
-    throw new Error("El post debe tener contenido");
+      throw new Error("El post debe tener contenido");
   }
 
   let isPrivate = $form.find('input[name="privatePost"]').prop('checked');
@@ -276,6 +361,7 @@ const getPost = () => {
   post.content = content;
   post.private = isPrivate;
   post.edited = false;
+  post.likesCount = 0;
 
   return post;
 }
@@ -283,10 +369,10 @@ const getPost = () => {
 const listPosts = () => {
   $('#user-posts-lst').html('<p>Cargando posts...</p>');
   let callback = (snapshot) => {
-    $('#user-posts-lst').html('');
-    snapshot.forEach(function (child) {
-      showPost(child.val());
-    })
+      $('#user-posts-lst').html('');
+      snapshot.forEach(function (child) {
+          showPostOnList(child.val());
+      })
   };
   getAllPosts(callback);
 }
@@ -294,11 +380,11 @@ const listPosts = () => {
 $('#add-form-post').submit((e) => {
   e.preventDefault();
   try {
-    let post = getPost();
-    post = addNewPost(post);
-    showPost(post);
+      let post = getPost();
+      post = addNewPost(post);
   } catch (error) {
-    alert(error.message);
+      console.log(error);
+      alert(error.message);
   }
 
 });
@@ -306,14 +392,17 @@ $('#add-form-post').submit((e) => {
 $('#form-edit-post').submit((e) => {
   e.preventDefault();
   try {
-    let post = getPostToEdit();
-    updatePost(post);
-    alertify.closeAll();
+      let post = getPostToEdit();
+      updatePost(post);
+      alertify.closeAll();
   } catch (error) {
-    alert(error.message);
+      alert(error.message);
   }
 });
 
 $('#logout-lnk').click((e) => {
+
   logout();
+  $(".navbar .btn").show();
+  $("#logout-lnk").hide();
 });
