@@ -3,7 +3,7 @@ document.getElementById("wallHome").addEventListener('click', () => {
 
   posts.innerHTML = `
 
-  <div class="card w-75" id="add-post-wrapper">
+  <div class="card w-100" id="add-post-wrapper">
   <div id="container-post" class="card-body">
 
     <form id="add-form-post">

@@ -30,10 +30,13 @@ textarea {
 }
 #photo{
   border-radius: 50%;
+  /* overflow: hidden; */
   bottom: 0;
   left: 0;
+  /* margin: auto; */
   max-height: 20px;
   max-width: 20px;
+  /* position: absolute; */
   right: 0;
   top: 0;
   padding-top: 20px;
@@ -85,7 +88,7 @@ ul{
   color: white;
   padding: 1% 5%;
 }
-.card-body{
-  margin-bottom: 5%;
-  background-color: #cfeff7;
-}
+
+/* #logout-lnk{
+  display: none;
+} */

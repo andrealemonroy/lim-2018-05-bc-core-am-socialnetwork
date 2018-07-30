@@ -1,3 +1,5 @@
+const string = document.getElementById('navOne');
+
 //Evento para seguridad de contraseña de registro
 $("#passwordR").on('keyup', () => {
     let mayus = new RegExp('^(?=.*[A-Z])');
@@ -119,7 +121,7 @@ const validateLogin = () => {
       alert('Aún no ha activado su cuenta. Por favor ingrese a su correo para verificarla');
     } else {
       //redirect to home
-      window.location = '/';
+      window.location = 'index.html';
     }
   }
   
@@ -156,10 +158,12 @@ const validateLogin = () => {
     authProvider.setCustomParameters({
       'display': 'popup'
     });
+ 
     firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
       .then(() => {
         return firebase.auth().signInWithPopup(authProvider);
       })
+ 
       .then((response) => {
         processAuthResult(response);
       })
@@ -169,6 +173,8 @@ const validateLogin = () => {
         var errorMessage = error.message;
         $('#container-text').html('error message: ' + errorMessage);
       });
+
+
   }
   
   //Autentificación con Google
