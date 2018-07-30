@@ -187,19 +187,18 @@ $('#form-login').submit(login = (e) => {
     firebase.auth().signInWithEmailAndPassword(accessMail, accessPassword)
       .then(() => {
         checkEmail();
-
-
       })
       .catch(function (error) {
         // Handle Errors here.
         getID('container-text').innerHTML = `<p>No se encuentra registrado ${error.code}:${error.message}</p>`
       });
   } else {
-    alert('error')
-
+    alert('error');
   }
   clearContent([getID('mail-access'), getID('password-access')]);
-
-
 });
 
+getID('mail-access').addEventListener('keyup', () =>{
+  $('#btn-login').removeClass('disabled');
+}
+)
