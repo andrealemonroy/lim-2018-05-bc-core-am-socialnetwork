@@ -69,6 +69,81 @@ Como la mayor parte del tiempo utilizan sus smartphones la red social será  res
 
 ## Resumen de Entrevista con usuarios
 
+![Guía de Entrevista](http://subirimagen.me/uploads/20180730084309.jpg)
+
+* Entrevista 1 .- Veronica Huallpa C., 26 años, Administradora, Practica Crossfit.
+
+  - ¿Estás interesado en tener un estilo de vida saludable? ¿Por qué?
+  *Respuesta* Si muy interesada porque me gusta tener una vida activa en beneficio para mi salud.
+
+  - ¿Con qué frecuencia utilizas redes sociales?
+  *Respuesta* Utilizo redes sociales todos los días, en todo momento siempre estoy dando un vistazo a las actualizaciones o me gusta compartir algo con mis amistades.
+
+  - ¿Cuáles son tus favoritas? ¿Por qué?
+  *Respuesta* Uso mayomente Facebook porque la mayoria de mis contactos lo utilizan y tambien me gusta Pinterest para crear tableros con temas de mi interés e Instagram estoy comenzando tambien a utilizarlo.
+
+  - ¿Qué tipo de contenido compartes o sigues respecto alimentación y salud?
+  *Respuesta* Artículos de salud, rutina de ejercicioss, postres, secuencias de crossfit, mis rutinas de entrenamiento en las mañanas.
+
+  - ¿Qué medios utilizas para buscar y compartir información respecto a tu estilo de vida? 
+  *Respuesta* En internet algunos portales con articulo interesante de alimentación, soy mienbro de un gran número de grupo en Facebook por ese medio tambien busco información o hago preguntas que otras personas  con el mismo interes responden.
+
+  - ¿Conoces alguna red social como Twitter, Facebook o Instagram que este orientado a compartir información exclusiva y confiable sobre alimentación y salud?
+  *Respuesta* Exclusivamente de alimentación y salud no conozco alguna pero seria interesante porque de está manera seria más facil contactar con personas que tengas esos intereses en común.
+
+  - ¿Te interesaría ser parte de una nueva red social exclusiva y confiable para alimentación y salud?
+  *Respuesta* Claro que si gran parte del tiempo estoy buscando información para aprender y si me gusta lo comparto.
+
+  - ¿Qué características principales consideras que debe tener?
+  *Respuesta* Permitir conocer personas con mismos intereses, organizar reuniones, compartir información y motivarnos.
+
+  - ¿Qué te motivaría seguir utilizándolo?
+  *Respuesta* Que tenga buena audiencia, compartan contenidos de alimentación recurrentes esten muy conectados y sea fácil de usar en el móvil.
+
+  - Define en dos palabras lo que te gustaría que transmita la nueva red social.
+  *Respuesta* Motivación y Vida Saludable
+
+  - ¿Qué colores elegirías para caracterizar el entorno?
+  *Respuesta* Considero que sean colores alegres y de energía: Azul y Rojo.
+
+
+* Entrevista 2 .- Karolina Lévano, 23 años, Independiente, Ver Netflix.
+
+  - ¿Estás interesado en tener un estilo de vida saludable? ¿Por qué?
+  *Respuesta* Si estoy interesada porque mi cuerpo me pide una mejor alimentación.
+
+  - ¿Con qué frecuencia utilizas redes sociales?
+  *Respuesta* Con cierta frecuencia
+
+  - ¿Cuáles son tus favoritas? ¿Por qué?
+  *Respuesta* Instagram, Facebook, Pinterest porque considero que soy muy visual.
+
+  - ¿Qué tipo de contenido compartes o sigues respecto alimentación y salud?
+  *Respuesta* Sigo youtubers vganos o que compartan su conocimiento acerca de la buena alimentación.
+
+  - ¿Qué medios utilizas para buscar y compartir información respecto a tu estilo de vida? 
+  *Respuesta* Uso Facebook e Instagram.
+
+  - ¿Conoces alguna red social como Twitter, Facebook o Instagram que este orientado a compartir información exclusiva y confiable sobre alimentación y salud?
+  *Respuesta* No conozco
+
+  - ¿Te interesaría ser parte de una nueva red social exclusiva y confiable para alimentación y salud?
+  *Respuesta* Si me gustaría porque tendría una aplicación especialmente para mi alimentación.
+
+  - ¿Qué características principales consideras que debe tener?
+  *Respuesta* Que la comida esté clasificada, poder subir recetas aprendidas, nombres de ingredientes que se adecuen a cada país.
+
+  - ¿Qué te motivaría seguir utilizándolo?
+  *Respuesta* QMe motivaria ver mucha variedad de recetas como: Postres, almuerzos, Cena, Snacks, etc. Que el diseño sea atractivo.
+
+  - Define en dos palabras lo que te gustaría que transmita la nueva red social.
+  *Respuesta* Variedad e Innovación
+
+  - ¿Qué colores elegirías para caracterizar el entorno?
+  *Respuesta* Verde, Azul, Amarillo.
+
+
+
 ## Scketches de baja fidelidad
 
 ![Sketch1](http://subirimagen.me/uploads/20180729232236.jpg)
@@ -82,7 +157,7 @@ A continuación presentamos nuestro prototipo de alta fidelidad [_Marvelapp_](ht
 
 ## Etapa de Testing
 
-## Conclusiones de Testing con prototipo de alta fidelidad
+## Conclusiones de Testing con prototipo de alta fidelidad y/o producto HTML
 
 ## Conclusiones de Testing con el producto HTML
 
