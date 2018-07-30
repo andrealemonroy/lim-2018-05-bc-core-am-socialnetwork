@@ -83,6 +83,8 @@ const shouldDisplayPost = (currentUser, post) => {
   }
 }
 
+
+
 const getOptionsForPosts = (currentUser, post) => {
   let options = ``;
   //si son mis propios posts, se agrega las opciones de edición y eliminar
