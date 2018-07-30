@@ -315,5 +315,8 @@ $('#form-edit-post').submit((e) => {
 });
 
 $('#logout-lnk').click((e) => {
+
   logout();
+  $(".navbar .btn").show();
+  $("#logout-lnk").hide();
 });
