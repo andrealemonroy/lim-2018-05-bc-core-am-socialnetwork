@@ -1,3 +1,5 @@
+const string = document.getElementById('navOne');
+
 //Evento para seguridad de contraseña de registro
 $("#passwordR").on('keyup', () => {
   let mayus = new RegExp('^(?=.*[A-Z])');
@@ -103,14 +105,8 @@ const validateLogin = () => {
     alert('Todos los campos son obligatorios');
     return false;
   }
-  //Usando expresiones regulares: evaluar cadena de caracteres
-  //Evaluando que cumpla con la expresion regular
-  else if (!expresionLogin.test(accessMail)) {
-    alert('El formato del correo no es válido');
-    return false;
-  }
-  return true;
-}
+} 
+
 
 
 const processAuthResult = (authResult, needsEmailVerified = false) => {
