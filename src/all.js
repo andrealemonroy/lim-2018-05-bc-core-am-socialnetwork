@@ -101,7 +101,7 @@ const showPost = (post) => {
           <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">
             •
           </button>` +
-        `<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+        `<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <a class="dropdown-item" href="#"  onClick="editPost('${post.idPost}')">Editar</a>
           <a class="dropdown-item" href="#" onClick="removePost('${post.idPost}')">Eliminar</a>
         </div>`
