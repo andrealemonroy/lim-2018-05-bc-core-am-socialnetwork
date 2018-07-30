@@ -85,7 +85,7 @@ ul{
   color: white;
   padding: 1% 5%;
 }
-.card-body{
-  margin-bottom: 5%;
-  background-color: #cfeff7;
-}
+
+/* #logout-lnk{
+  display: none;
+} */

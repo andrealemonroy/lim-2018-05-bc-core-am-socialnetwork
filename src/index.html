@@ -17,12 +17,19 @@
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/alertify.min.css" />
   <!-- Default theme -->
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/themes/default.min.css" />
+  <link rel="stylesheet" href="../icomoon/style.css">
 </head>
 
 <body>
 
-  <nav class="navbar navbar-dark bg-primary">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <span class="navbar-brand mb-0 h1">Vitality</span>
+    <div class="btn-group float right">
+      <a class="btn btn-outline-secondary" id="btn1" href="#" data-toggle="modal" data-target="#modalLogin">Ingresar</a>
+      <a class="btn btn-outline-secondary" id="btn2" href="#" data-toggle="modal" data-target="#modalLogin ">Registrar</a>
+      <div id="photo"></div>
+      <a href="#" id="logout-lnk" class="btn btn-dark">Cerrar Sesión</a>
+    </div>
   </nav>
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -31,7 +38,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse " id="navbarSupportedContent" style="float:right">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
           <a id="wallHome" class="nav-link" href="#">Home
@@ -44,17 +51,6 @@
           </a>
         </li>
       </ul>
-
-
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
-
-
-      <a class="btn btn-outline-primary" href="#" data-toggle="modal" data-target="#modalLogin">Ingresar</a>
-      <a class="btn btn-outline-secondary" href="#" data-toggle="modal" data-target="#modalLogin ">Registrar</a>
-
     </div>
   </nav>
 
@@ -136,39 +132,25 @@
           </div>
         </div>
 
-        <!-- <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div> -->
 
       </div>
     </div>
   </div>
 
   <div id="posts" class="wrapper">
-    <div>
-      <span>
-        <a href="#" id="logout-lnk">Cerrar Sesión</a>
-        <br/>
-      </span>
-    </div>
 
-<!--     <div class="card w-75" id="add-post-wrapper">
+
+    <div class="card w-100" id="add-post-wrapper">
       <div id="container-post" class="card-body">
 
         <form id="add-form-post">
 
           <label for="postTextArea">Publicación</label>
-            <textarea class="form-control" name="postContent" id="postTextArea" rows="5" placeholder="¿Qué deseas publicar?"></textarea>
-            <input type="checkbox" name="privatePost" value="private" />Privado
-            <button class="btn btn-primary" id="btn-add-post">Publicar</button>
+          <textarea class="form-control" name="postContent" id="postTextArea" rows="5" placeholder="¿Qué deseas publicar?"></textarea>
+          <input type="checkbox" name="privatePost" value="private" />Privado
+          <button class="btn btn-primary" id="btn-add-post">Publicar</button>
 
-
-
- -->
-<!--           <a href="#" class="btn btn-info btn-lg">
-            <span class="glyphicon glyphicon-thumbs-up"></span> Like
-          </a> -->
+  </div>
 
         </form>
 
@@ -177,18 +159,10 @@
 
   </div>
 
-  <br>
-  <br>
-
-
-
-
-
-
-
   <div style="display: none">
-    <form id="form-edit-post" class="card text-white bg-secondary mb-3 w-50">
+    <form id="form-edit-post" class="card w-100">
       <fieldset>
+
         <input type="hidden" name="idPost" />
         <textarea name="postContent" required></textarea>
         <input type="checkbox" name="privatePost" value="private" />Privado
@@ -217,7 +191,7 @@
   <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
   <script src="all.js"></script>
   <script src="../js/main.js"></script>
-    <script src="../js/userData.js"></script>
+  <script src="../js/userData.js"></script>
   <script src="../js/wallLogin.js"></script>
 </body>
 

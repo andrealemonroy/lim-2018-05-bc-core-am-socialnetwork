@@ -1,6 +1,7 @@
 //Declración de Variables:
 const status = document.getElementById('status');
 
+$('#logout-lnk').hide();
 // Initialize Firebase
 const config = {
   apiKey: "AIzaSyAB7icNPz-tO88wVkgcCeNmlz9H1xd8OTU",
@@ -40,7 +41,9 @@ const getFromSession = (key) => {
 }
 
 const getLoggedUser = () => {
+
   return firebase.auth().currentUser;
+
 }
 
 
@@ -59,6 +62,9 @@ const logout = (redirect = true) => {
 $(document).ready(function () {
   firebase.auth().onAuthStateChanged((user) => {
     listPosts();
+
+
+
   });
 });
 
@@ -77,14 +83,20 @@ const shouldDisplayPost = (currentUser, post) => {
   }
 }
 
+const getPostByUserAndId = (userId, postId, callback) => {
+  console.log(userId, postId);
+  getDataBase().ref('/user-posts/' + userId + '/' + postId).once('value', callback);
+}
 
 //esta función muestra el post en pantalla, lo agrega a la lista de posts
 const showPost = (post) => {
   let currentUser = getLoggedUser();
   if (shouldDisplayPost(currentUser, post)) {
-    let postWrapper = `<div data-id="${post.idPost} class="card text-white bg-success mb-3">` +
-      `<div id="container-post" class="card-body w-75">` +
-      `<span>${post.content}</span><br/>`;
+
+    $(".navbar .btn").hide();
+    $("#logout-lnk").show();
+    let postWrapper = `<div data-id="${post.idPost}" class="card w-100">` +
+      `<div id="container-post" class="card-body w-100">${post.content}`+ `</div>`;
     //si son mis propios posts, se agrega las opciones de edición y eliminar
     if (post.userId === currentUser.uid) {
       postWrapper = postWrapper +
@@ -100,10 +112,10 @@ const showPost = (post) => {
     }
     //sin son posts de otras personas 
     else {
-      postWrapper = ` <div class="card-header w-75"><span>Por ${post.author}</span></div>` + postWrapper + `<br>`
+      postWrapper = ` <h5 class="card-title"> Por ${post.author}</h5>` + postWrapper
     }
 
-    postWrapper =  postWrapper + `</div>`;
+    postWrapper = postWrapper  + `</div>`;
     //agregar post a la lista
     $('#user-posts-lst').append(postWrapper);
   }
@@ -309,12 +321,3 @@ $('#form-edit-post').submit((e) => {
 $('#logout-lnk').click((e) => {
   logout();
 });
-
-
-
-
-
-
-
-
-

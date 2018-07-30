@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+const string = document.getElementById('navOne');
+
+>>>>>>> a7b1c5e5cd3fec0670b6977c48f90edadef1ebeb
 //Evento para seguridad de contraseña de registro
 $("#passwordR").on('keyup', () => {
     let mayus = new RegExp('^(?=.*[A-Z])');
@@ -119,7 +124,11 @@ const validateLogin = () => {
       alert('Aún no ha activado su cuenta. Por favor ingrese a su correo para verificarla');
     } else {
       //redirect to home
+<<<<<<< HEAD
       window.location = '/';
+=======
+      window.location = 'index.html';
+>>>>>>> a7b1c5e5cd3fec0670b6977c48f90edadef1ebeb
     }
   }
   
@@ -156,10 +165,18 @@ const validateLogin = () => {
     authProvider.setCustomParameters({
       'display': 'popup'
     });
+<<<<<<< HEAD
+=======
+ 
+>>>>>>> a7b1c5e5cd3fec0670b6977c48f90edadef1ebeb
     firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
       .then(() => {
         return firebase.auth().signInWithPopup(authProvider);
       })
+<<<<<<< HEAD
+=======
+ 
+>>>>>>> a7b1c5e5cd3fec0670b6977c48f90edadef1ebeb
       .then((response) => {
         processAuthResult(response);
       })
@@ -169,6 +186,11 @@ const validateLogin = () => {
         var errorMessage = error.message;
         $('#container-text').html('error message: ' + errorMessage);
       });
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> a7b1c5e5cd3fec0670b6977c48f90edadef1ebeb
   }
   
   //Autentificación con Google

@@ -1,6 +1,7 @@
 document.getElementById("userProfile").addEventListener('click', () => {
 
   posts.innerHTML = `
+<<<<<<< HEAD
   <div class="card w-75" id="add-post-wrapper">
     <div id="container-post" class="card-body">
 
@@ -40,6 +41,13 @@ document.getElementById("userProfile").addEventListener('click', () => {
  <ul id="user-posts-lst">
  </ul>
 </div>`
+=======
+Bienvenido usuario a Vitality
+
+ `;
+ posts.innerHTML += `
+`
+>>>>>>> a7b1c5e5cd3fec0670b6977c48f90edadef1ebeb
  
 })
 

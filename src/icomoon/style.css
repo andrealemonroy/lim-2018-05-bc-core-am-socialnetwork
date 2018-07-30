@@ -26,11 +26,9 @@
 
 .icon-cross:before {
   content: "\ea0f";
-  color:red;
-  font-size:10px;
+  color: red;
 }
 .icon-checkmark:before {
   content: "\ea10";
   color: green;
-  font-size:10px;
 }
