@@ -3,16 +3,13 @@ const string = document.getElementById('navOne');
 //Evento para seguridad de contraseña de registro
 $("#passwordR").on('keyup', () => {
     let mayus = new RegExp('^(?=.*[A-Z])');
-    let special = new RegExp('^(?=.*[!%@#$&*])');
-    let number = new RegExp('^(?=.*[0-9])');
-    let lower = new RegExp('^(?=.*[a-z])');
     let len = new RegExp('^(?=.{8,})');
     //Arreglos
-    let regExp = [mayus, special, number, lower, len];
-    let elements = [$('#mayus'), $('#special'), $('#number'), $('#lower'), $('#len')];
+    let regExp = [mayus, len];
+    let elements = [$('#mayus'), $('#len')];
   
     let registrationPassword = $('#passwordR').val();
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 2; i++) {
       if (regExp[i].test(registrationPassword)) {
   
         elements[i].attr("class", "icon-checkmark");

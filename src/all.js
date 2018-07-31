@@ -123,6 +123,18 @@ const getLikeOptionsAndThenShow = (currentUser, post, postWrapper) => {
   });
 }
 
+const getPublicPosts = (post, postWrapper) => {
+    getDataBase().ref('/postLikes/' + post.idPost + '/0').once('value', (snapshot) => {
+        postWrapper = postWrapper
+            + `<br/>`
+            + `<span class="likeCounterWrapper" data-post="${post.idPost}">${post.likesCount}</span>`
+            + `</div></li>`;
+        $('#user-posts-lst').prepend(postWrapper);
+    });
+}
+
+
+
 const updatePostOnList = (idPost) => {
   let callback = (snapshot) => {
       let post = snapshot.val();
@@ -140,15 +152,26 @@ const removePostFromList = (idPost) => {
 
 //esta función muestra el post en pantalla, lo agrega a la lista de posts
 const showPostOnList = (post) => {
-  $(".navbar .btn").hide();
-  $("#logout-lnk").show();
-  let currentUser = getLoggedUser();
-  if (shouldDisplayPost(currentUser, post)) {
-      let postWrapper = ` <h5 class="card-title"> Por User</h5>` +`<div data-id="${post.idPost}" class="card w-100">`
-          +  `<div id="container-post" class="card-body w-100">${post.content}`+ `</div>`;
-      postWrapper = postWrapper + getOptionsForPosts(currentUser, post);
-      getLikeOptionsAndThenShow(currentUser, post, postWrapper);
-  }
+    let currentUser = getLoggedUser();
+    let isLogged = (currentUser != null);
+    let isUserPost = isLogged ? shouldDisplayPost(currentUser, post) : false;
+
+    if (isUserPost) {
+        $(".navbar .btn").hide();
+        $("#logout-lnk").show();
+        let postWrapper = `<li id="${post.idPost}" data-id="${post.idPost}">`
+            + `<div class="post">`
+            + `<span>${post.content}</span><br/>`;
+        postWrapper = postWrapper + getOptionsForPosts(currentUser, post);
+        getLikeOptionsAndThenShow(currentUser, post, postWrapper);
+    }
+    else {
+        let postWrapper = `<li id="${post.idPost}" data-id="${post.idPost}">`
+            + `<div class="post">`
+            + `<span>${post.content}</span><br/>`;
+        getPublicPosts(post, postWrapper);
+    }
+
 }
 
 const getPostByIdPost = (postId, callback) => {
