@@ -129,7 +129,7 @@ const getPublicPosts = (post, postWrapper) => {
     getDataBase().ref('/postLikes/' + post.idPost + '/0').once('value', (snapshot) => {
         postWrapper = postWrapper
             + `<br/>`
-            + `<span class="likeCounterWrapper" data-post="${post.idPost}">${post.likesCount}</span>`
+            + `<span class="likeCounterWrapper" data-post="${post.idPost}">${post.likesCount}Me gusta</span>`
             + `</div></li>`;
         $('#user-posts-lst').prepend(postWrapper);
     });
@@ -175,8 +175,6 @@ const showPostOnList = (post) => {
             getPublicPosts(post, postWrapper);
         }
     }
-
-}
 
 const getPostByIdPost = (postId, callback) => {
     getDataBase().ref('/posts/' + postId).once('value', callback);
