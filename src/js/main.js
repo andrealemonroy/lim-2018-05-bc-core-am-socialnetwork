@@ -99,13 +99,16 @@ const validateLogin = () => {
     alert('Todos los campos son obligatorios');
     return false;
   }
-  //Usando expresiones regulares: evaluar cadena de caracteres
-  //Evaluando que cumpla con la expresion regular
-  else if (!expresionLogin.test(accessMail)) {
-    alert('El formato del correo no es válido');
-    return false;
-  }
-  return true;
+  
+  
+  const processAuthResult = (authResult, needsEmailVerified = false) => {
+    if (needsEmailVerified && !authResult.user.emailVerified) {
+      logout(false);
+      alert('Aún no ha activado su cuenta. Por favor ingrese a su correo para verificarla');
+    } else {
+      //redirect to home
+      window.location = '/src';
+    }
 }
 
 

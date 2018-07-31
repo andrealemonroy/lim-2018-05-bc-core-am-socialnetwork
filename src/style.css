@@ -2,7 +2,6 @@
   background-color: green;
 }
 
-
 #publicar{
   background-image: url(https://previews.123rf.com/images/coffeemate/coffeemate1301/coffeemate130100056/17438663-pencil-cartoon-a-children-s-sketch.jpg);
     background-size: auto;
@@ -15,6 +14,16 @@
     top: -1px;
     vertical-align: middle;
 }
+
+/* Carousel */
+#slider-home {
+margin-top: 50px;
+margin-bottom: 50px;
+}
+.carousel-item img {
+  width: 100%;
+}
+
 textarea {
   max-width: 100%;
 }
