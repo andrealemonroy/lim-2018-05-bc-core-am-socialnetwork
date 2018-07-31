@@ -2,12 +2,6 @@
   background-color: green;
 }
 
-/* cambiar el color de fondo a la barra */
-nav.navbar {
-  background-color: #011936;
-}
-
-
 
 #publicar{
   background-image: url(https://previews.123rf.com/images/coffeemate/coffeemate1301/coffeemate130100056/17438663-pencil-cartoon-a-children-s-sketch.jpg);
@@ -32,10 +26,7 @@ textarea {
 #btn-post{
   width: 100px;
 }
-.photo_user_name{
-  display: block;
-  
-}
+
 #photo{
   border-radius: 50%;
   bottom: 0;
