@@ -99,6 +99,7 @@ const validateLogin = () => {
     alert('Todos los campos son obligatorios');
     return false;
   }
+}
   
   
   const processAuthResult = (authResult, needsEmailVerified = false) => {
@@ -109,8 +110,6 @@ const validateLogin = () => {
       //redirect to home
       window.location = '/src';
     }
-  }
-  return true;
 }
 
 
