@@ -20,3 +20,4 @@ document.getElementById("wallHome").addEventListener('click', () => {
 
   </div>
 </div>`
+})
