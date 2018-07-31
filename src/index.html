@@ -22,7 +22,6 @@
 
 <body>
 
-  <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-light"> -->
   <nav class="navbar navbar-default" role="navigation">
     <span class="navbar-brand mb-0 h1">
       <img src="templates/Vitality.png" width="auto" height="100"> </span>
@@ -47,11 +46,6 @@
             <span class="sr-only">(current)</span>
           </a>
         </li>
-        <li class="nav-item active">
-          <a id="userProfile" class="nav-link" href="#">User
-            <span class="sr-only">(current)</span>
-          </a>
-        </li>
       </ul>
     </div>
   </nav>
@@ -66,6 +60,7 @@
           </button>
         </div>
         <div class="modal-body">
+
           <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
               <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Ingresar</a>
@@ -86,18 +81,19 @@
                   <label for="password-access">Contraseña</label>
                   <input class='validate form-control' type='password' name='password' id='password-access' />
                 </div>
-
                 <div class="form-group">
+                <input type="submit" id="btn-login" class="btn btn-block" value="Ingresar">
+                </div>
+                <div class="form-group ">
                   <a href="#" class="fb" id="btn-login-facebook">
                     <i class="fa fa-facebook fa-fw"></i> Facebook
                   </a>
-                </div>
-                <div class="form-group">
+
                   <a href="#" class="google" id="btn-login-google">
                     <i class="fa fa-google fa-fw"></i> Google+
                   </a>
                 </div>
-                <input type="submit" id="btn-login" class="btn" value="LOGIN">
+
 
 
                 <div id="container-text"></div>
@@ -109,13 +105,16 @@
             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
               <form id="form-signup">
                 <div class="form-group">
-                  <input id="emailR" class='form-control' type="email" name="username" placeholder="email" required>
+                  <label for="emailR">Correo</label>
+                  <input id="emailR" class='form-control' type="email" name="username" placeholder="Correo" required>
                 </div>
                 <div class="form-group">
-                  <input id="passwordR" class='form-control' type="password" name="password" placeholder="password" required pattern=".{8,}">
+                  <label for="passwordR">Contraseña</label>
+                  <input id="passwordR" class='form-control' type="password" name="password" placeholder="contraseña" required pattern=".{8,}">
                 </div>
                 <div class="form-group">
-                  <input id="confirm-password" class='form-control' type="password" name="confirm-password" placeholder="confirm password"
+                    <label for="confirm-password">Contraseña</label>
+                  <input id="confirm-password" class='form-control' type="password" name="confirm-password" placeholder="confirma contraseña"
                     required />
                 </div>
                 <p id="password-requirements">Requisitos mínimos de Contraseña:</p>
@@ -123,7 +122,7 @@
                   <li id="mayus">Mínimo 1 mayúscula</li>
                   <li id="len">Mínimo 8 caracteres</li>
                 </ul>
-                <input type="submit" id="btn-signup" class="btn" value="Regístrate">
+                <input type="submit" id="btn-signup" class="btn btn-block" value="Regístrate">
               </form>
             </div>
 

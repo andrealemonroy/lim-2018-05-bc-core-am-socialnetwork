@@ -67,7 +67,7 @@ const logout = (redirect = true) => {
 $(document).ready(() => {
   firebase.auth().onAuthStateChanged((user) => {
       listPosts();
-    
+      $("#add-post-wrapper").hide();
   });
 });
 
@@ -111,7 +111,7 @@ const getLikeOptionsAndThenShow = (currentUser, post, postWrapper) => {
           postWrapper = postWrapper
               + `<br/>`
               + `<span class="likeCounterWrapper" data-post="${post.idPost}">${post.likesCount}</span>`
-              + `<span><a href="#" onClick="addLikeToPost('${post.idPost}')">Me gusta</a></span>`
+              + `<span><a href="#" onClick="addLikeToPost('${post.idPost}')"> Me gusta</a></span>`
               + `</div></li>`;
       }
       //Cuando el usuario ya le dio Like al post, entonces se muestra la opción 'Ya no me gusta' 
@@ -119,7 +119,7 @@ const getLikeOptionsAndThenShow = (currentUser, post, postWrapper) => {
           postWrapper = postWrapper
               + `<br/>`
               + `<span class="likeCounterWrapper" data-post="${post.idPost}">${post.likesCount}</span>`
-              + `<span><a href="#" onClick="removeLikeFromPost('${post.idPost}')">Ya no me gusta</a></span>`
+              + `<span><a href="#" onClick="removeLikeFromPost('${post.idPost}')"> Ya no me gusta</a></span>`
               + `</div></li>`;
       }
       //agregar post a la lista
@@ -163,14 +163,15 @@ const showPostOnList = (post) => {
     if (isUserPost) {
         $(".navbar .btn").hide();
         $("#logout-lnk").show();
-        let postWrapper = `<li id="${post.idPost}" data-id="${post.idPost}">`
+        $("#add-post-wrapper").show();
+        let postWrapper = `<li id="${post.idPost}" data-id="${post.idPost}"  class="card-wrapper w-75">`
             + `<div class="post">`
             + `<span>${post.content}</span><br/>`;
         postWrapper = postWrapper + getOptionsForPosts(currentUser, post);
         getLikeOptionsAndThenShow(currentUser, post, postWrapper);
     }
     else if (!post.private){
-            let postWrapper = `<li id="${post.idPost}" data-id="${post.idPost}" class="card w-100">`
+            let postWrapper = `<li id="${post.idPost}" data-id="${post.idPost}" class="card-wrapper w-75">`
             + `<div class="post">`
             + `<span>${post.content}</span><br/>`;
         getPublicPosts(post, postWrapper);
