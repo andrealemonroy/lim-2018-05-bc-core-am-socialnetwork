@@ -6,7 +6,10 @@ const IS_LOGGED_USER_KEY = '_isLoggedUser';
 $('#logout-lnk').hide();
 // Verifica si el cliente se ha logueado
 const isLogged = () => {
-    return (getFromSession(IS_LOGGED_USER_KEY) == 'true');
+
+  return (getFromSession(IS_LOGGED_USER_KEY) == 'true');
+  $("#add-post-wrapper").show();
+
 }
 
 // Initialize Firebase
@@ -63,10 +66,11 @@ const logout = (redirect = true) => {
 }
 
 // first
-$(document).ready(function () {
-    firebase.auth().onAuthStateChanged((user) => {
-        listPosts();
-    });
+$(document).ready(() => {
+  firebase.auth().onAuthStateChanged((user) => {
+      listPosts();
+    
+  });
 });
 
 const getDataBase = () => {
@@ -129,7 +133,7 @@ const getPublicPosts = (post, postWrapper) => {
     getDataBase().ref('/postLikes/' + post.idPost + '/0').once('value', (snapshot) => {
         postWrapper = postWrapper
             + `<br/>`
-            + `<span class="likeCounterWrapper" data-post="${post.idPost}">${post.likesCount}</span>`
+            + `<span class="likeCounterWrapper" data-post="${post.idPost}">${post.likesCount}Me gusta</span>`
             + `</div></li>`;
         $('#user-posts-lst').prepend(postWrapper);
     });
@@ -167,16 +171,15 @@ const showPostOnList = (post) => {
         postWrapper = postWrapper + getOptionsForPosts(currentUser, post);
         getLikeOptionsAndThenShow(currentUser, post, postWrapper);
     }
-    else {
-        if (!post.private) {
-            let postWrapper = `<li id="${post.idPost}" data-id="${post.idPost}">`
-                + `<div class="post">`
-                + `<span>${post.content}</span><br/>`;
-            getPublicPosts(post, postWrapper);
+
+    else if (!post.private){
+            let postWrapper = `<li id="${post.idPost}" data-id="${post.idPost}" class="card w-100">`
+            + `<div class="post">`
+            + `<span>${post.content}</span><br/>`;
+        getPublicPosts(post, postWrapper);
+
         }
     }
-
-}
 
 const getPostByIdPost = (postId, callback) => {
     getDataBase().ref('/posts/' + postId).once('value', callback);

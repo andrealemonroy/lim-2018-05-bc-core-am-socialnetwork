@@ -1,6 +1,7 @@
 .check{
   background-color: green;
 }
+
 #publicar{
   background-image: url(https://previews.123rf.com/images/coffeemate/coffeemate1301/coffeemate130100056/17438663-pencil-cartoon-a-children-s-sketch.jpg);
     background-size: auto;
@@ -34,10 +35,7 @@ textarea {
 #btn-post{
   width: 100px;
 }
-.photo_user_name{
-  display: block;
-  
-}
+
 #photo{
   border-radius: 50%;
   bottom: 0;

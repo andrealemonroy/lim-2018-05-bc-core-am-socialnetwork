@@ -21,6 +21,7 @@
 </head>
 
 <body>
+
   <header>
     <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-primary"> -->
     <nav class="navbar navbar-default" role="navigation">
@@ -57,6 +58,43 @@
       </div>
     </nav>
   </header>
+
+
+  <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-light"> -->
+  <nav class="navbar navbar-default" role="navigation">
+    <span class="navbar-brand mb-0 h1">
+      <img src="templates/Vitality.png" width="auto" height="100"> </span>
+    <div class="btn-group float right">
+      <a class="btn btn-outline-secondary" id="btn1" href="#" data-toggle="modal" data-target="#modalLogin">Ingresar</a>
+      <a class="btn btn-outline-secondary" id="btn2" href="#" data-toggle="modal" data-target="#modalLogin ">Registrar</a>
+      <div id="photo"></div>
+      <a href="#" id="logout-lnk" class="btn btn-dark">Cerrar Sesión</a>
+    </div>
+  </nav>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse " id="navbarSupportedContent" style="float:right">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a id="wallHome" class="nav-link" href="#">Home
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item active">
+          <a id="userProfile" class="nav-link" href="#">User
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+
   <div class="modal" tabindex="-1" role="dialog" id="modalLogin">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -81,7 +119,7 @@
           <div class="tab-content" id="myTabContent">
 
             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-              <form id="form-signin">
+              <form id="form-login">
                 <div class="form-group">
                   <label for="mail-access">Correo</label>
                   <input class='validate form-control' type='email' name='email' id='mail-access' />
@@ -161,6 +199,7 @@
 
 
 
+
       <div id="posts" class="wrapper">
 
 
@@ -181,11 +220,13 @@
         </div>
       </div>
 
-    </div>
+
+      </div>
 
     <div style="display: none">
       <form id="form-edit-post" class="card w-100">
         <fieldset>
+
 
           <input type="hidden" name="idPost" />
           <textarea name="postContent" required></textarea>
@@ -195,6 +236,9 @@
         </fieldset>
       </form>
     </div>
+
+
+
 
     <div id="my-posts-wrappers">
 
