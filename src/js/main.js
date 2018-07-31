@@ -116,7 +116,7 @@ const validateLogin = () => {
       alert('Aún no ha activado su cuenta. Por favor ingrese a su correo para verificarla');
     } else {
       //redirect to home
-      window.location = '/';
+      window.location = '/src';
     }
   }
   
