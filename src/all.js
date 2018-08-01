@@ -425,10 +425,11 @@ $('#add-form-post').submit((e) => {
 
 $('#form-edit-post').submit((e) => {
     e.preventDefault();
+    $("#beforeEdit").hide();
     try {
         let post = getPostToEdit();
         updatePost(post);
-        $("#beforeEdit").hide();
+
     } catch (error) {
         alert(error.message);
     }
