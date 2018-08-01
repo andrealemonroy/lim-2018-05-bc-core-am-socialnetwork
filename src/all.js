@@ -1,4 +1,3 @@
-
 //Declración de Variables:
 const status = document.getElementById('status');
 
