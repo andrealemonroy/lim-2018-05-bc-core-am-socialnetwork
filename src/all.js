@@ -295,7 +295,7 @@ const deletePost = (userId, idPost) => {
 
 const editPost = (idPost) => {
     let currentUser = getLoggedUser();
-    $(".post").hide();
+    $("#${post.idPost}").hide();
 
     let callbackEdit = (snapshot) => {
         let post = snapshot.val();
