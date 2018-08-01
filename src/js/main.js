@@ -146,7 +146,7 @@ const validateLogin = () => {
       }
     }
 
-    //login with google
+    //login with google and fb
     const authWithOAuth = (socialNetwork) => {
       let authProvider = getAuthProvider(socialNetwork);
       authProvider.setCustomParameters({
@@ -163,7 +163,7 @@ const validateLogin = () => {
           // Handle Errors here.
           var errorCode = error.code;
           var errorMessage = error.message;
-          $('#container-text').html('error message: ' + errorMessage);
+          alert('No pudo loguearse');
         });
     }
 
@@ -190,7 +190,7 @@ const validateLogin = () => {
           })
           .catch(function (error) {
             // Handle Errors here.
-            getID('container-text').innerHTML = `<p>No se encuentra registrado ${error.code}:${error.message}</p>`
+            alert('No se encuentra registrado');
           });
       } else {}
       clearContent([getID('mail-access'), getID('password-access')]);
