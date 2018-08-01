@@ -98,8 +98,8 @@ const getOptionsForPosts = (currentUser, post) => {
             •
           </button>` +
             `<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-           <a href="#" class="dropdown-item" onClick="editPost('${post.idPost}')" data-post="${post.idPost}">Editar</a>
-          <a href="#" class="dropdown-item" onClick="removePost('${post.idPost}')" data-post="${post.idPost}">Eliminar</a></div>`;
+           <a  class="dropdown-item" onClick="editPost('${post.idPost}')" data-post="${post.idPost}">Editar</a>
+          <a  class="dropdown-item" onClick="removePost('${post.idPost}')" data-post="${post.idPost}">Eliminar</a></div>`;
     }
     return options;
 }
@@ -295,33 +295,7 @@ const deletePost = (userId, idPost) => {
 
 const editPost = (idPost) => {
     let currentUser = getLoggedUser();
-
-    alertify.genericDialog || alertify.dialog('genericDialog', function () {
-        return {
-            main: function (content) {
-                this.setContent(content);
-            },
-            setup: function () {
-                return {
-                    focus: {
-                        element: function () {
-                            return this.elements.body.querySelector(this.get('selector'));
-                        },
-                        select: true
-                    },
-                    options: {
-                        basic: true,
-                        maximizable: false,
-                        resizable: false,
-                        padding: false
-                    }
-                };
-            },
-            settings: {
-                selector: undefined
-            }
-        };
-    });
+    $(".post").hide();
 
     let callbackEdit = (snapshot) => {
         let post = snapshot.val();
@@ -416,7 +390,7 @@ $('#add-form-post').submit((e) => {
         let post = getPost();
         clearElement(getID("postTextArea"));
         post = addNewPost(post);
-        $(".post").hide();
+
     } catch (error) {
         console.log(error);
         alert(error.message);
