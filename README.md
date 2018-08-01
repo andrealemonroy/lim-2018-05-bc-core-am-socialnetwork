@@ -162,6 +162,7 @@ Los usuarios se sintieron cómodos que la interfaz les entrege la facilidad de p
 ![Lista de Cotejo](http://subirimagen.me/uploads/20180801093543.jpg)
 
 
+
 ## Objetivos
 
 El objetivo principal de aprendizaje de este proyecto es construir un sitio web
