@@ -158,11 +158,9 @@ A continuación presentamos nuestro prototipo de alta fidelidad [_Marvelapp_](ht
 
 ## Conclusiones de Testing con prototipo de alta fidelidad y/o producto HTML
 
-Los usuarios se sintieron cómodos que la interfaz les entrege la facilidad de poder seguir utilizando su misma cuenta de Facebook o Google+ para loguearse con esta nueva aplicación; asi como un registro práctico que les permite crear una nueva cuenta.
+Los usuarios se sintieron cómodos que la interfaz les entrege la facilidad de poder seguir utilizando su misma cuenta de Facebook o Google+ para loguearse con esta nueva aplicación; asi como un registro que les permite crear una nueva cuenta pero descubrimos en testing que era tedioso validar el correo con un mensaje desde su bandeja ya que les tomaba más tiempo.
 
-![Lista de Cotejo](http://subirimagen.me/uploads/20180730091903.jpg)
-
-
+![Lista de Cotejo](http://subirimagen.me/uploads/20180801093543.jpg)
 
 
 
