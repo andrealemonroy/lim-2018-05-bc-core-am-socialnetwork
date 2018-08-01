@@ -153,12 +153,14 @@ Como la mayor parte del tiempo utilizan sus smartphones la red social será  res
 
 ## Link/screenshots del prototipo de alta fidelidad.
 
-A continuación presentamos nuestro prototipo de alta fidelidad [_Marvelapp_](https://marvelapp.com/5d6hf85/screen/46199554)
+A continuación presentamos nuestro prototipo de alta fidelidad [_Marvelapp_](https://marvelapp.com/9a44fce/screen/46306036)
+
+![Prototipo Mobile](http://subirimagen.me/uploads/20180801030459.png)
 
 
 ## Conclusiones de Testing con prototipo de alta fidelidad y/o producto HTML
 
-Los usuarios se sintieron cómodos que la interfaz les entrege la facilidad de poder seguir utilizando su misma cuenta de Facebook o Google+ para loguearse con esta nueva aplicación; asi como un registro práctico que les permite crear una nueva cuenta.
+Los usuarios se sintieron cómodos que la interfaz les entrege la facilidad de poder seguir utilizando su misma cuenta de Facebook o Google+ para loguearse con esta nueva aplicación; asi como un registro que les permite crear una nueva cuenta pero descubrimos en testing que era tedioso validar el correo con un mensaje desde su bandeja ya que les tomaba más tiempo y la probabilidad de abandonar el proceso era alta.
 
 ![Lista de Cotejo](http://subirimagen.me/uploads/20180730091903.jpg)
 
