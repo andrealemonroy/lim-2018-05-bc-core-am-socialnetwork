@@ -182,7 +182,7 @@ const validateLogin = () => {
       //Obtener email y pass registrados
       let accessMail = getID('mail-access').value;
       let accessPassword = getID('password-access').value;
-      if (validateLogin()) {
+      if (validateLogin() && validateSignUp()) {
         console.log('hola');
         firebase.auth().signInWithEmailAndPassword(accessMail, accessPassword)
           .then(() => {
@@ -192,7 +192,9 @@ const validateLogin = () => {
             // Handle Errors here.
             alert('No se encuentra registrado');
           });
-      } else {}
+      } else{
+        alert('ingrese una contraseña válida');
+      }
       clearContent([getID('mail-access'), getID('password-access')]);
 
 
