@@ -112,7 +112,7 @@ const getLikeOptionsAndThenShow = (currentUser, post, postWrapper) => {
           postWrapper = postWrapper
               + `<br/>`
               + `<span class="likeCounterWrapper" data-post="${post.idPost}">${post.likesCount}</span>`
-              + `<span><a href="#" onClick="addLikeToPost('${post.idPost}')"> Me gusta</a></span>`
+              + `<span><a class="link" onClick="addLikeToPost('${post.idPost}')"> Me gusta</a></span>`
               + `</div></li>`;
       }
       //Cuando el usuario ya le dio Like al post, entonces se muestra la opción 'Ya no me gusta' 
@@ -120,7 +120,7 @@ const getLikeOptionsAndThenShow = (currentUser, post, postWrapper) => {
           postWrapper = postWrapper
               + `<br/>`
               + `<span class="likeCounterWrapper" data-post="${post.idPost}">${post.likesCount}</span>`
-              + `<span><a href="#" onClick="removeLikeFromPost('${post.idPost}')"> Ya no me gusta</a></span>`
+              + `<span><a class="link" onClick="removeLikeFromPost('${post.idPost}')"> Ya no me gusta</a></span>`
               + `</div></li>`;
       }
       //agregar post a la lista
@@ -165,7 +165,7 @@ const showPostOnList = (post) => {
         $(".navbar .btn").hide();
         $("#logout-lnk").show();
         $("#add-post-wrapper").show();
-        let postWrapper = `<li id="${post.idPost}" data-id="${post.idPost}"  class="card-wrapper w-75">`
+        let postWrapper = `<li id="${post.idPost}" data-id="${post.idPost}"  class="card-wrapper w-75 mx-auto">`
             + `<div class="post">`
             + `<span>${post.content}</span><br/>`;
         postWrapper = postWrapper + getOptionsForPosts(currentUser, post);
@@ -173,7 +173,7 @@ const showPostOnList = (post) => {
     }
 
     else if (!post.private){
-            let postWrapper = `<li id="${post.idPost}" data-id="${post.idPost}" class="card-wrapper w-75">`
+            let postWrapper = `<li id="${post.idPost}" data-id="${post.idPost}" class="card-wrapper w-75 mx-auto">`
             + `<div class="post">`
             + `<span>${post.content}</span><br/>`;
         getPublicPosts(post, postWrapper);
