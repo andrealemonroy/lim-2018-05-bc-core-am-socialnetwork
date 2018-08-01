@@ -414,7 +414,7 @@ $('#add-form-post').submit((e) => {
     e.preventDefault();
     try {
         let post = getPost();
-        clearContent(post);
+        clearElement(getID("postTextArea"));
         post = addNewPost(post);
     } catch (error) {
         console.log(error);
