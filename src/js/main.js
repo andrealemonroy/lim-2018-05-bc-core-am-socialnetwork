@@ -115,7 +115,7 @@ const validateLogin = () => {
         alert('Aún no ha activado su cuenta. Por favor ingrese a su correo para verificarla');
       } else {
         //redirect to home
-        window.location = 'index.html';
+        window.location = '../';
       }
     }
 
@@ -131,7 +131,7 @@ const validateLogin = () => {
           // Handle Errors here.
           var errorCode = error.code;
           var errorMessage = error.message;
-          $('#container-text').html('error message: ' + errorMessage);
+          alert('error message: ' + errorMessage);
         });
     }
 
