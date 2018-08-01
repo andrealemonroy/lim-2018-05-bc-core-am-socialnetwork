@@ -168,7 +168,7 @@ const showPostOnList = (post) => {
         let postWrapper = `<li id="${post.idPost}" data-id="${post.idPost}"  class="card-wrapper w-75 mx-auto">`
             + `<div class="post">`
             +
-    `    <img src="templates/userPhoto.png" class="rounded" alt="photo" width="100" height="90"> `
+    `    <img src="templates/userPhoto.png" class="rounded mx-auto" alt="photo" width="100" height="90"> `
             + `<span class="text-right">${post.content}</span><br/>`;
         postWrapper = postWrapper + getOptionsForPosts(currentUser, post);
         getLikeOptionsAndThenShow(currentUser, post, postWrapper);
@@ -177,7 +177,7 @@ const showPostOnList = (post) => {
     else if (!post.private){
             let postWrapper = `<li id="${post.idPost}" data-id="${post.idPost}" class="card-wrapper w-75 mx-auto">`
             + `<div class="post">`+
-    `    <img src="templates/userPhoto.png" class="rounded" alt="photo" width="100" height="90"> `
+    `    <img src="templates/userPhoto.png" class="rounded mx-auto" alt="photo" width="100" height="90"> `
             + `<span class="text-right">${post.content}</span><br/>`;
         getPublicPosts(post, postWrapper);
 
