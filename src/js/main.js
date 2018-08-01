@@ -19,22 +19,6 @@ $("#passwordR").on('keyup', () => {
 
 })
 
-//Evento para seguridad de contraseña de registro
-$("#password-access").on('keyup', () => {
-  let mayus = new RegExp('^(?=.*[A-Z])');
-  let len = new RegExp('^(?=.{8,})');
-  //Arreglos
-  let regExp = [mayus, len];
-  let elements = [$('#mayus'), $('#len')];
-
-  let accessPassword = $('#password-access').val();
-  for (let i = 0; i < 2; i++) {
-    if (!regExp[i].test(accessPassword)) {
-
-      alert('ingrese una contraseña válida')
-    }
-  }
-})
 
 
 //Validar formulario de registro
@@ -108,10 +92,9 @@ $('#form-signup').submit(registrar = (e) => {
 //Validar formulario de login
 const validateLogin = () => {
   expresionLogin = /\w+@\w+\.+[a-z]/;
+  expresionPassword = /\w+?=.{8,}/;
   let accessMail = getID('mail-access').value;
   let accessPassword = getID('password-access').value;
-  let mayus = new RegExp('^(?=.*[A-Z])');
-  let len = new RegExp('^(?=.{8,})');
   //Arreglos
   let regExp = [mayus, len];
   let elements = [$('#mayus'), $('#len')];
@@ -124,14 +107,11 @@ const validateLogin = () => {
   else if (!expresionLogin.test(accessMail)) {
     alert('El formato del correo no es válido');
     return false;
+  } else if (!expresionPassword.test(accessPassword)) {
+    alert('El formato de la contraseña no es válida');
+    return false;
   }
-  for (let i = 0; i < 2; i++) {
-    if (!regExp.test(accessPassword)) {
-      alert('El formato de la contraseña no es válida');
-      return false;
-    }
-    return true;
-  }
+  return true;
 }
 
 
