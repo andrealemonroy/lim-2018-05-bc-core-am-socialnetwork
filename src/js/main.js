@@ -95,6 +95,11 @@ const validateLogin = () => {
   expresionLogin = /\w+@\w+\.+[a-z]/;
   let accessMail = getID('mail-access').value;
   let accessPassword = getID('password-access').value;
+  let mayus = new RegExp('^(?=.*[A-Z])');
+    let len = new RegExp('^(?=.{8,})');
+    //Arreglos
+    let regExp = [mayus, len];
+    let elements = [$('#mayus'), $('#len')];
   if (accessMail === '' || accessPassword === '') {
       alert('Todos los campos son obligatorios');
       return false;
@@ -105,7 +110,13 @@ const validateLogin = () => {
       alert('El formato del correo no es válido');
       return false;
   }
+    for (let i = 0; i < 2; i++) {
+      if (!regExp.test(accessPassword)) {
+        alert('El formato de la contraseña no es válida');
+    return false;
+  }
   return true;
+}
 }
 
 
@@ -182,7 +193,7 @@ const validateLogin = () => {
       //Obtener email y pass registrados
       let accessMail = getID('mail-access').value;
       let accessPassword = getID('password-access').value;
-      if (validateLogin() && validateSignUp()) {
+      if (validateLogin()) {
         console.log('hola');
         firebase.auth().signInWithEmailAndPassword(accessMail, accessPassword)
           .then(() => {
@@ -193,7 +204,7 @@ const validateLogin = () => {
             alert('No se encuentra registrado');
           });
       } else{
-        alert('ingrese una contraseña válida');
+
       }
       clearContent([getID('mail-access'), getID('password-access')]);
 
