@@ -296,40 +296,15 @@ const deletePost = (userId, idPost) => {
 const editPost = (idPost) => {
     let currentUser = getLoggedUser();
 
-    alertify.genericDialog || alertify.dialog('genericDialog', function () {
-        return {
-            main: function (content) {
-                this.setContent(content);
-            },
-            setup: function () {
-                return {
-                    focus: {
-                        element: function () {
-                            return this.elements.body.querySelector(this.get('selector'));
-                        },
-                        select: true
-                    },
-                    options: {
-                        basic: true,
-                        maximizable: false,
-                        resizable: false,
-                        padding: false
-                    }
-                };
-            },
-            settings: {
-                selector: undefined
-            }
-        };
-    });
 
     let callbackEdit = (snapshot) => {
         let post = snapshot.val();
         let $editForm = $('#form-edit-post');
-        $editForm.find('textarea[name="postContent"]').val(post.content);
+        $editForm.find('textarea[id="editPost"]').val(post.content);
         $editForm.find('input[name="idPost"]').val(post.idPost);
         $editForm.find('input[name="privatePost"]').prop('checked', post.private)
-        alertify.genericDialog($editForm[0]).set('selector', 'textarea[name="postContent"]');
+        $("#beforeEdit").hide();
+        $("#editPost").show();
     }
 
     getPostByUserAndId(currentUser.uid, idPost, callbackEdit);

@@ -108,3 +108,7 @@ ul {
 .link{
   cursor: pointer;
 }
+
+#editPost{
+  display: none;
+}
