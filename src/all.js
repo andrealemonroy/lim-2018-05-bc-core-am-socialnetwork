@@ -329,7 +329,6 @@ const editPost = (idPost) => {
         $editForm.find('textarea[name="postContent"]').val(post.content);
         $editForm.find('input[name="idPost"]').val(post.idPost);
         $editForm.find('input[name="privatePost"]').prop('checked', post.private)
-        alertify.genericDialog($editForm[0]).set('selector', 'textarea[name="postContent"]');
     }
 
     getPostByUserAndId(currentUser.uid, idPost, callbackEdit);
