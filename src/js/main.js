@@ -92,15 +92,21 @@ $('#form-signup').submit(registrar = (e) => {
 
 //Validar formulario de login
 const validateLogin = () => {
-    expresionLogin = /\w+@\w+\.+[a-z]/;
-    let accessMail = getID('mail-access').value;
-    let accessPassword = getID('password-access').value;
-    if (accessMail === '' || accessPassword === '') {
+  expresionLogin = /\w+@\w+\.+[a-z]/;
+  let accessMail = getID('mail-access').value;
+  let accessPassword = getID('password-access').value;
+  if (accessMail === '' || accessPassword === '') {
       alert('Todos los campos son obligatorios');
       return false;
-    }
   }
-
+  //Usando expresiones regulares: evaluar cadena de caracteres
+  //Evaluando que cumpla con la expresion regular
+  else if (!expresionLogin.test(accessMail)) {
+      alert('El formato del correo no es válido');
+      return false;
+  }
+  return true;
+}
 
 
     const processAuthResult = (authResult, needsEmailVerified = false) => {
