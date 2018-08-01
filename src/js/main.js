@@ -152,7 +152,6 @@ const validateLogin = () => {
         })
         .then((response) => {
           processAuthResult(response);
-          zzzzzzzzzzz
         })
         .catch(function (error) {
           // Handle Errors here.

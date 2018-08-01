@@ -1,4 +1,3 @@
-
 //Declración de Variables:
 const status = document.getElementById('status');
 
@@ -113,7 +112,7 @@ const getLikeOptionsAndThenShow = (currentUser, post, postWrapper) => {
           postWrapper = postWrapper
               + `<br/>`
               + `<span class="likeCounterWrapper" data-post="${post.idPost}">${post.likesCount}</span>`
-              + `<span><a class="link" onClick="addLikeToPost('${post.idPost}')"> Me gusta</a></span>`
+              + `<span><a class="link text-primary"" onClick="addLikeToPost('${post.idPost}')"> Me gusta</a></span>`
               + `</div></li>`;
       }
       //Cuando el usuario ya le dio Like al post, entonces se muestra la opción 'Ya no me gusta' 
@@ -121,7 +120,7 @@ const getLikeOptionsAndThenShow = (currentUser, post, postWrapper) => {
           postWrapper = postWrapper
               + `<br/>`
               + `<span class="likeCounterWrapper" data-post="${post.idPost}">${post.likesCount}</span>`
-              + `<span><a class="link" onClick="removeLikeFromPost('${post.idPost}')"> Ya no me gusta</a></span>`
+              + `<span><a class="link text-primary"" onClick="removeLikeFromPost('${post.idPost}')"> Ya no me gusta</a></span>`
               + `</div></li>`;
       }
       //agregar post a la lista
@@ -133,7 +132,7 @@ const getPublicPosts = (post, postWrapper) => {
     getDataBase().ref('/postLikes/' + post.idPost + '/0').once('value', (snapshot) => {
         postWrapper = postWrapper
             + `<br/>`
-            + `<span class="likeCounterWrapper" data-post="${post.idPost}">${post.likesCount}Me gusta</span>`
+            + `<span class="likeCounterWrapper text-primary"" data-post="${post.idPost}">${post.likesCount} Me gusta</span>`
             + `</div></li>`;
         $('#user-posts-lst').prepend(postWrapper);
     });

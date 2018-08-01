@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/alertify.min.css" />
   <!-- Default theme -->
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/themes/default.min.css" />
-  <link rel="stylesheet" href="../icomoon/style.css">
+  <link rel="stylesheet" href="../src/icomoon/style.css">
 </head>
 
 <body>
@@ -89,7 +89,7 @@
                   <input class='validate form-control' type='password' name='password' id='password-access' />
                 </div>
                 <div class="form-group">
-                <input type="submit" id="btn-login" class="btn btn-block" value="Ingresar">
+                  <input type="submit" id="btn-login" class="btn btn-block" value="Ingresar">
                 </div>
                 <div class="form-group ">
                   <a href="#" class="fb" id="btn-login-facebook">
@@ -113,16 +113,15 @@
               <form id="form-signup">
                 <div class="form-group">
                   <label for="emailR">Correo</label>
-                  <input id="emailR" class='form-control' type="email" name="username" placeholder="Correo" required>
+                  <input id="emailR" class='form-control' type="email" name="username" required>
                 </div>
                 <div class="form-group">
                   <label for="passwordR">Contraseña</label>
-                  <input id="passwordR" class='form-control' type="password" name="password" placeholder="contraseña" required pattern=".{8,}">
+                  <input id="passwordR" class='form-control' type="password" name="password" required pattern=".{8,}">
                 </div>
                 <div class="form-group">
-                    <label for="confirm-password">Contraseña</label>
-                  <input id="confirm-password" class='form-control' type="password" name="confirm-password" placeholder="confirma contraseña"
-                    required />
+                  <label for="confirm-password">Confirmar contraseña</label>
+                  <input id="confirm-password" class='form-control' type="password" name="confirm-password" required />
                 </div>
                 <p id="password-requirements">Requisitos mínimos de Contraseña:</p>
                 <ul>
@@ -160,7 +159,7 @@
           </div>
 
         </div>
-  </div>
+      </div>
 
 
 
@@ -186,7 +185,7 @@
       </div>
 
 
-      </div>
+    </div>
 
     <div style="display: none">
       <form id="form-edit-post" class="card w-100">
