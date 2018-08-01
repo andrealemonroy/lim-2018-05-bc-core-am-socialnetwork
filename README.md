@@ -134,7 +134,7 @@ Como la mayor parte del tiempo utilizan sus smartphones la red social será  res
   *Respuesta* Que la comida esté clasificada, poder subir recetas aprendidas, nombres de ingredientes que se adecuen a cada país.
 
   - ¿Qué te motivaría seguir utilizándolo?
-  *Respuesta* QMe motivaria ver mucha variedad de recetas como: Postres, almuerzos, Cena, Snacks, etc. Que el diseño sea atractivo.
+  *Respuesta* Me motivaria ver mucha variedad de recetas como: Postres, almuerzos, Cena, Snacks, etc. Que el diseño sea atractivo.
 
   - Define en dos palabras lo que te gustaría que transmita la nueva red social.
   *Respuesta* Variedad e Innovación
