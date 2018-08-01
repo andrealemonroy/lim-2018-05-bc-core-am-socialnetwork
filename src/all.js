@@ -295,7 +295,9 @@ const deletePost = (userId, idPost) => {
 
 const editPost = (idPost) => {
     let currentUser = getLoggedUser();
-    $("#${post.idPost}").hide();
+    let textarea = document.querySelector(idPost + "textarea");
+    console.log(textarea);
+
 
     let callbackEdit = (snapshot) => {
         let post = snapshot.val();
