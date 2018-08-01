@@ -19,6 +19,23 @@ $("#passwordR").on('keyup', () => {
 
 })
 
+//Evento para seguridad de contraseña de registro
+$("#password-access").on('keyup', () => {
+  let mayus = new RegExp('^(?=.*[A-Z])');
+  let len = new RegExp('^(?=.{8,})');
+  //Arreglos
+  let regExp = [mayus, len];
+  let elements = [$('#mayus'), $('#len')];
+
+  let accessPassword = $('#password-access').val();
+  for (let i = 0; i < 2; i++) {
+    if (!regExp[i].test(accessPassword)) {
+
+      alert('ingrese una contraseña válida')
+    }
+  }
+})
+
 
 //Validar formulario de registro
 const validateSignUp = () => {
@@ -26,8 +43,6 @@ const validateSignUp = () => {
   let registrationMail = $('#emailR').val();
   let registrationPassword = $('#passwordR').val();
   let confirmPassword = $('#confirm-password').val();
-  console.log(registrationPassword);
-  console.log(confirmPassword);
   if (!expresion.test(registrationMail)) {
     alert('El formato de correo es invalido');
     return false;
@@ -96,117 +111,117 @@ const validateLogin = () => {
   let accessMail = getID('mail-access').value;
   let accessPassword = getID('password-access').value;
   let mayus = new RegExp('^(?=.*[A-Z])');
-    let len = new RegExp('^(?=.{8,})');
-    //Arreglos
-    let regExp = [mayus, len];
-    let elements = [$('#mayus'), $('#len')];
+  let len = new RegExp('^(?=.{8,})');
+  //Arreglos
+  let regExp = [mayus, len];
+  let elements = [$('#mayus'), $('#len')];
   if (accessMail === '' || accessPassword === '') {
-      alert('Todos los campos son obligatorios');
-      return false;
+    alert('Todos los campos son obligatorios');
+    return false;
   }
   //Usando expresiones regulares: evaluar cadena de caracteres
   //Evaluando que cumpla con la expresion regular
   else if (!expresionLogin.test(accessMail)) {
-      alert('El formato del correo no es válido');
-      return false;
-  }
-    for (let i = 0; i < 2; i++) {
-      if (!regExp.test(accessPassword)) {
-        alert('El formato de la contraseña no es válida');
+    alert('El formato del correo no es válido');
     return false;
   }
-  return true;
+  for (let i = 0; i < 2; i++) {
+    if (!regExp.test(accessPassword)) {
+      alert('El formato de la contraseña no es válida');
+      return false;
+    }
+    return true;
+  }
 }
+
+
+const processAuthResult = (authResult, needsEmailVerified = false) => {
+  if (needsEmailVerified && !authResult.user.emailVerified) {
+    logout(false);
+    alert('Aún no ha activado su cuenta. Por favor ingrese a su correo para verificarla');
+  } else {
+    //redirect to home
+    window.location = 'index.html';
+  }
 }
 
+const authWithEmailAndPassword = (email, password) => {
+  firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+    .then(() => {
+      return firebase.auth().signInWithEmailAndPassword(email, password);
+    })
+    .then((response) => {
+      processAuthResult(response, true);
+    })
+    .catch((error) => {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      alert('error');
+    });
+}
 
-    const processAuthResult = (authResult, needsEmailVerified = false) => {
-      if (needsEmailVerified && !authResult.user.emailVerified) {
-        logout(false);
-        alert('Aún no ha activado su cuenta. Por favor ingrese a su correo para verificarla');
-      } else {
-        //redirect to home
-        window.location = 'index.html';
-      }
-    }
+const getAuthProvider = (socialNetwork) => {
+  switch (socialNetwork) {
+    case 'google':
+      return new firebase.auth.GoogleAuthProvider();
+    case 'facebook':
+      return new firebase.auth.FacebookAuthProvider();
+    default:
+      throw new Error("No valid auth provider");
+  }
+}
 
-    const authWithEmailAndPassword = (email, password) => {
-      firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
-        .then(() => {
-          return firebase.auth().signInWithEmailAndPassword(email, password);
-        })
-        .then((response) => {
-          processAuthResult(response, true);
-        })
-        .catch((error) => {
-          // Handle Errors here.
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          alert('error');
-        });
-    }
+//login with google and fb
+const authWithOAuth = (socialNetwork) => {
+  let authProvider = getAuthProvider(socialNetwork);
+  authProvider.setCustomParameters({
+    'display': 'popup'
+  });
+  firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+    .then(() => {
+      return firebase.auth().signInWithPopup(authProvider);
+    })
+    .then((response) => {
+      processAuthResult(response);
+    })
+    .catch(function (error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      alert('No pudo loguearse');
+    });
+}
 
-    const getAuthProvider = (socialNetwork) => {
-      switch (socialNetwork) {
-        case 'google':
-          return new firebase.auth.GoogleAuthProvider();
-        case 'facebook':
-          return new firebase.auth.FacebookAuthProvider();
-        default:
-          throw new Error("No valid auth provider");
-      }
-    }
+//Autentificación con Google
+$('#btn-login-google').click(() => {
+  authWithOAuth('google');
+});
 
-    //login with google and fb
-    const authWithOAuth = (socialNetwork) => {
-      let authProvider = getAuthProvider(socialNetwork);
-      authProvider.setCustomParameters({
-        'display': 'popup'
+//Autentificación con Facebook
+$('#btn-login-facebook').click(() => {
+  authWithOAuth('facebook');
+});
+
+$('#form-login').submit(login = (e) => {
+  e.preventDefault();
+  //Obtener email y pass registrados
+  let accessMail = getID('mail-access').value;
+  let accessPassword = getID('password-access').value;
+  if (validateLogin()) {
+    console.log('hola');
+    firebase.auth().signInWithEmailAndPassword(accessMail, accessPassword)
+      .then(() => {
+        authWithEmailAndPassword(accessMail, accessPassword);
+      })
+      .catch(function (error) {
+        // Handle Errors here.
+        alert('No se encuentra registrado');
       });
-      firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
-        .then(() => {
-          return firebase.auth().signInWithPopup(authProvider);
-        })
-        .then((response) => {
-          processAuthResult(response);
-        })
-        .catch(function (error) {
-          // Handle Errors here.
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          alert('No pudo loguearse');
-        });
-    }
+  } else {
 
-    //Autentificación con Google
-    $('#btn-login-google').click(() => {
-      authWithOAuth('google');
-    });
-
-    //Autentificación con Facebook
-    $('#btn-login-facebook').click(() => {
-      authWithOAuth('facebook');
-    });
-
-    $('#form-login').submit(login = (e) => {
-      e.preventDefault();
-      //Obtener email y pass registrados
-      let accessMail = getID('mail-access').value;
-      let accessPassword = getID('password-access').value;
-      if (validateLogin()) {
-        console.log('hola');
-        firebase.auth().signInWithEmailAndPassword(accessMail, accessPassword)
-          .then(() => {
-            authWithEmailAndPassword(accessMail, accessPassword);
-          })
-          .catch(function (error) {
-            // Handle Errors here.
-            alert('No se encuentra registrado');
-          });
-      } else{
-
-      }
-      clearContent([getID('mail-access'), getID('password-access')]);
+  }
+  clearContent([getID('mail-access'), getID('password-access')]);
 
 
-    });
+});
