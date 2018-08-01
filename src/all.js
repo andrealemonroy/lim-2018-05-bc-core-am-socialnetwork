@@ -329,6 +329,7 @@ const editPost = (idPost) => {
         $editForm.find('textarea[name="postContent"]').val(post.content);
         $editForm.find('input[name="idPost"]').val(post.idPost);
         $editForm.find('input[name="privatePost"]').prop('checked', post.private)
+        alertify.genericDialog($editForm[0]).set('selector', 'textarea[name="postContent"]');
     }
 
     getPostByUserAndId(currentUser.uid, idPost, callbackEdit);
@@ -415,6 +416,7 @@ $('#add-form-post').submit((e) => {
         let post = getPost();
         clearElement(getID("postTextArea"));
         post = addNewPost(post);
+        $(".post").hide();
     } catch (error) {
         console.log(error);
         alert(error.message);
@@ -424,11 +426,10 @@ $('#add-form-post').submit((e) => {
 
 $('#form-edit-post').submit((e) => {
     e.preventDefault();
-    $("#beforeEdit").hide();
     try {
         let post = getPostToEdit();
         updatePost(post);
-
+        alertify.closeAll();
     } catch (error) {
         alert(error.message);
     }
